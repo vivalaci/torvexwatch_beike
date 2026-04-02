@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/**
+ * 奢侈品对标站视觉基线（设计令牌）
+ * 阶段 1：仅建立变量，后续在 header/footer 等文件中逐步替换硬编码色值。
+ * 对标参考：Bob's Watches 类站点 — 白底、深字、克制边框、清晰 CTA。
+ */
+
+:root {
+  --lux-bg-page: #ffffff;
+  --lux-bg-subtle: #f5f5f5;
+  --lux-bg-topbar: #f7f7f7;
+  --lux-text: #1a1a1a;
+  --lux-text-muted: #5c5c5c;
+  --lux-heading: #282828;
+  --lux-border: #e8e8e8;
+  --lux-container-max: 1400px;
+}

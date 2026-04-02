@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+/**
+ * 品牌模块横条（对标 Bob's）：左图右文、竖线分隔、横向滚动、底栏滚动条、两侧箭头
+ */
+
+.page-home #home-modules-box > .module-item:has(.lux-brand-strip),
+.module-item:has(.lux-brand-strip) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.module-brand.lux-brand-strip {
+  /* 对标目标站：仅隐藏标题与「查看所有」，Blade 仍输出便于后台与后续恢复 */
+  .lux-brand-strip-heading,
+  .lux-brand-strip-footer {
+    display: none;
+  }
+
+  .lux-brand-strip-heading {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--lux-text-muted, #5c5c5c);
+    padding: 0.85rem 0 0.4rem;
+    margin: 0;
+    background: #fff;
+  }
+
+  .lux-brand-strip-bar {
+    background: #fff;
+    border-top: 1px solid var(--lux-border, #e8e8e8);
+    border-bottom: 1px solid var(--lux-border, #e8e8e8);
+  }
+
+  .lux-brand-strip-scroll-outer {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    background: #fff;
+  }
+
+  .lux-brand-strip-nav {
+    flex: 0 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-right: 1px solid var(--lux-border, #e8e8e8);
+    background: #fff;
+    color: #9a9a9a;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    &:hover {
+      color: #111;
+      background: #fafafa;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(0, 0, 0, 0.2);
+      outline-offset: -2px;
+    }
+
+    &--next {
+      border-right: none;
+      border-left: 1px solid var(--lux-border, #e8e8e8);
+    }
+  }
+
+  .lux-brand-strip-scroll {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.28) rgba(0, 0, 0, 0.06);
+
+    &::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 3px;
+    }
+  }
+
+  .lux-brand-strip-item {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    min-width: 148px;
+    max-width: 240px;
+    padding: 0.9rem 1.1rem;
+    color: #111;
+    border-right: 1px solid #e5e5e5;
+    transition: background 0.15s ease;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &:hover {
+      background: #fafafa;
+      color: #111;
+    }
+  }
+
+  .lux-brand-strip-img {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .lux-brand-strip-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.25;
+    color: inherit;
+  }
+
+  .lux-brand-strip-footer {
+    text-align: center;
+    padding: 0.65rem 0 0.35rem;
+    background: #fff;
+  }
+
+  .lux-brand-strip-all {
+    font-size: 0.8rem;
+    color: var(--lux-text-muted, #5c5c5c);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #111;
+    }
+  }
+}

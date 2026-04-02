@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/**
+ * 「About / Our Story」长文块（class: about-bobs）— 对标 Bob's：上眉小写、衬线主标题、正文与签名
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;600;700&family=Inter:wght@400;500&display=swap');
+
+.about-bobs {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #1a1a1a;
+
+  &.pageWidth {
+    max-width: 100%;
+  }
+
+  .container {
+    max-width: min(52rem, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @media (min-width: 768px) {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+
+  /* 上眉：ABOUT … */
+  h2.mb-4 {
+    margin-bottom: 0.35rem !important;
+
+    .h6,
+    span.h6 {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      line-height: 1.4;
+      color: #111;
+      text-transform: uppercase;
+    }
+  }
+
+  /* 主标题 Our Story */
+  h3.h2,
+  h3[role='heading'] {
+    margin: 0 0 1.25rem;
+    font-family: 'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #111;
+  }
+
+  p {
+    margin: 0 0 1.15rem;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    font-weight: 400;
+    color: #222;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  /* 签名区 */
+  .row:last-of-type {
+    margin-top: 2rem;
+    padding-top: 0.25rem;
+
+    p {
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+      line-height: 1.5;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    em {
+      font-style: italic;
+      font-weight: 400;
+      color: #333;
+    }
+  }
+}

@@ -1,0 +1,202 @@
+@charset "UTF-8";
+
+/**
+ * 全站侧栏菜单（桌面三道横线 + 移动原菜单键共用）
+ * 上白：后台配置的 accordion；下黑：联系与账号
+ */
+
+.lux-offcanvas-menu {
+  --bs-offcanvas-width: min(100vw, 420px);
+
+  .lux-offcanvas-menu-header {
+    background: #111;
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .lux-offcanvas-menu-body {
+    min-height: 0;
+    flex: 1 1 auto;
+  }
+}
+
+.lux-menu-drawer {
+  min-height: 0;
+  height: 100%;
+}
+
+.lux-drawer-primary {
+  background: #fff;
+  padding: 0;
+}
+
+.lux-drawer-util {
+  background: #000;
+  color: #fff;
+  padding: 1rem 1rem 1.5rem;
+}
+
+.lux-drawer-util-list {
+  li + li {
+    margin-top: 0.35rem;
+  }
+}
+
+.lux-drawer-util-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.25rem;
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.35;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+
+  i {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    opacity: 0.95;
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* 侧栏内 accordion（原 mobile-menu-wrap 样式迁入） */
+#offcanvas-mobile-menu {
+  .mobile-menu-wrap {
+    padding: 0;
+  }
+
+  #menu-accordion {
+    border-top: 1px solid #e5e5e5;
+
+    .accordion-item {
+      border-bottom: 1px solid #e5e5e5;
+
+      .nav-item-text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > a {
+          flex: 1;
+          min-height: 48px;
+          padding-left: 1rem;
+          padding-right: 0.5rem;
+          display: flex;
+          align-items: center;
+          color: #111;
+          font-weight: 500;
+
+          .badge {
+            position: relative;
+            margin-left: 13px;
+            font-weight: 400;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: 100%;
+              transform: translate(0, -50%);
+              border: 5px solid #0000;
+              border-right-color: inherit;
+            }
+          }
+        }
+
+        > span {
+          width: 48px;
+          min-height: 48px;
+          display: flex;
+          border-left: 1px solid #e5e5e5;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          &:active {
+            background-color: #eee;
+          }
+
+          &[aria-expanded="true"] {
+            background-color: #eee;
+
+            i {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+
+      > .accordion-collapse {
+        padding: 0 12px;
+        border-top: 1px solid #e5e5e5;
+
+        .children-group {
+          .children-title {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            span {
+              margin-right: -10px;
+              width: 44px;
+              height: 44px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              &:active {
+                background-color: #eee;
+              }
+
+              &[aria-expanded="true"] {
+                i::before {
+                  content: "\F63B";
+                }
+              }
+            }
+          }
+
+          .nav {
+            a {
+              color: #555;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 桌面端三道横线按钮（默认深色；首页叠图由 header.scss 覆盖） */
+.header-content .right-btn .lux-desktop-menu-btn {
+  color: #333;
+}
+
+.lux-desktop-menu-btn {
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  .lux-desktop-menu-icon {
+    font-size: 1.85rem;
+    line-height: 1;
+    color: inherit;
+  }
+}
