@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;600&family=Inter:wght@400;500;600&display=swap');
 
 footer .lux-footer-reviews-press {
-  background-color: #f0f0f0;
+  background-color: #efefef;
   border-top: 1px solid #e5e5e5;
 
   .lux-footer-reviews-press__inner {
@@ -15,10 +15,10 @@ footer .lux-footer-reviews-press {
     max-width: var(--lux-container-max, 1400px);
     margin-left: auto;
     margin-right: auto;
-    padding: 2.75rem 1.25rem 2.5rem;
+    padding: 2.5rem 1.2rem 2.25rem;
 
     @media (min-width: 992px) {
-      padding: 3rem 1.5rem 2.75rem;
+      padding: 2.75rem 1.35rem 2.5rem;
     }
 
     @media (max-width: 767px) {
@@ -40,7 +40,7 @@ footer .lux-footer-reviews-press {
   .lux-footer-reviews-press__heading {
     margin: 0;
     font-family: 'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
-    font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+    font-size: clamp(1.52rem, 2.55vw, 1.95rem);
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -63,8 +63,8 @@ footer .lux-footer-reviews-press {
 
     p {
       margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.55;
+      font-size: 0.84rem;
+      line-height: 1.5;
       font-weight: 400;
       color: #222;
 
@@ -81,14 +81,14 @@ footer .lux-footer-reviews-press {
   .lux-footer-reviews-press__attribution {
     margin: 0;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 500;
     color: #333;
   }
 
   .lux-footer-reviews-press__press {
-    margin-top: 2.25rem;
-    padding-top: 2rem;
+    margin-top: 2rem;
+    padding-top: 1.7rem;
     border-top: 1px solid #b8b8b8;
 
     @media (max-width: 767px) {

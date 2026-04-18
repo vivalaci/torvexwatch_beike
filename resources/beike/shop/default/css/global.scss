@@ -200,18 +200,20 @@ img {
 .module-title {
   font-size: 2rem;
   text-align: left;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   position: relative;
-  color: #333;
+  color: #111;
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
 
   @media (max-width: 992px) {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   @media (min-width: 992px) {
-    padding-bottom: 10px;
+    padding-bottom: 6px;
   }
 
   // &:after {

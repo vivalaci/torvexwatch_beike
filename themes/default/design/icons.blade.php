@@ -55,11 +55,29 @@
 @else
   <div class="module-info module-icons">
     <div class="{{ $content['module_size'] ?? 'container-fluid' }}">
-    @if ($content['title'])
-    <div class="module-title">{{ $content['title'] }}</div>
-    @endif
-    @if ($content['sub_title'])
-    <div class="module-sub-title">{{ $content['sub_title'] }}</div>
+    @php
+      $floorVal = $content['floor'] ?? '';
+      $floorUrl = '';
+      if (is_array($floorVal)) {
+        $floorUrl = trim((string)($floorVal[app()->getLocale()] ?? $floorVal['en'] ?? ''));
+      } elseif (is_string($floorVal)) {
+        $floorUrl = trim($floorVal);
+      }
+    @endphp
+    @if ($content['sub_title'] || $content['title'] || $floorUrl)
+    <div class="lux-icons-title-row">
+      <div>
+        @if ($content['sub_title'])
+        <div class="lux-icons-pre-title">{{ $content['sub_title'] }}</div>
+        @endif
+        @if ($content['title'])
+        <div class="module-title">{{ $content['title'] }}</div>
+        @endif
+      </div>
+      @if ($floorUrl)
+      <a href="{{ $floorUrl }}" class="lux-icons-shop-all">Shop All</a>
+      @endif
+    </div>
     @endif
       <div class="row g-3 g-lg-4">
         @foreach ($content['images'] as $image)
@@ -91,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var el = document.querySelector('.lux-icons-swiper--{{ $module_id }}');
   if (!el) return;
   new Swiper(el, {
-    slidesPerView: 2,
+    slidesPerView: 1,
     spaceBetween: 0,
     speed: 450,
     watchOverflow: true,

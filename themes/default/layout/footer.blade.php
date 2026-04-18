@@ -48,7 +48,7 @@
 
     <div class="footer-content">
       <div class="row">
-        <div class="col-12 col-md-3 me-lg-5">
+        <div class="col-12 col-lg-2">
           <div class="footer-content-left footer-link-wrap">
             <h6 class="text-uppercase intro-title">{{ __('shop/common.company_profile') }}<span class="icon-open"><i class="bi bi-plus-lg"></i></span></h6>
             <div class="intro-wrap">
@@ -56,11 +56,7 @@
                 <div class="logo"><a href="{{ shop_route('home.index') }}"><img src="{{ image_origin($footer_content['content']['intro']['logo']) }}" alt="{{ system_setting('base.meta_title', 'BeikeShop开源好用的跨境电商系统') }}" class="img-fluid"></a></div>
               @endif
               <div class="text">{!! $footer_content['content']['intro']['text'][locale()] ?? '' !!}</div>
-              <div class="social-network">
-                @foreach ($footer_content['content']['intro']['social_network'] ?? [] as $item)
-                <a href="{{ $item['link'] }}" target="_blank"><img src="{{ image_origin($item['image']) }}" class="img-fluid"></a>
-                @endforeach
-              </div>
+              {{-- 二开：社交图标已移至版权底栏 --}}
             </div>
           </div>
         </div>
@@ -69,12 +65,12 @@
             $link = $footer_content['content']['link' . $i];
           @endphp
           @if ($design || ($link['title'][locale()] ?? false))
-          <div class="col-12 col-md footer-content-link{{ $i }} footer-link-wrap">
+          <div class="col-12 col-lg footer-content-link{{ $i }} footer-link-wrap">
             <h6 class="text-uppercase">{{ $link['title'][locale()] ?? '' }}<span class="icon-open"><i class="bi bi-plus-lg"></i></span></h6>
             <ul class="list-unstyled">
               @foreach ($link['links'] as $item)
                 @if ($item['link'])
-                <li class="lh-lg">
+                <li>
                   <a href="{{ $item['link'] }}" @if (isset($item['new_window']) && $item['new_window']) target="_blank" @endif>
                     {{ $item['text'] }}
                   </a>
@@ -95,18 +91,42 @@
     </div>
   </div>
 
-  @hookwrapper('footer.copyright')
-  @if (isset($footer_content['bottom']['image']) && $footer_content['bottom']['image'])
-  <div class="footer-bottom">
-    <div class="container-fluid">
-      <div class="d-lg-flex align-items-center justify-content-center">
-        <div class="ms-auto right-img py-md-2 text-center">
-          <img src="{{ image_origin($footer_content['bottom']['image']) }}" class="img-fluid">
-        </div>
+  {{-- 二开：邮件订阅区块（对标 Bob's「Timeless Style Delivered To Your Inbox」） --}}
+  <div class="lux-footer-subscribe">
+    <div class="lux-footer-subscribe__inner">
+      <h3 class="lux-footer-subscribe__title">Timeless Style Delivered To Your Inbox</h3>
+      <p class="lux-footer-subscribe__desc">Subscribe today to receive email updates on our timepieces.</p>
+      <form class="lux-footer-subscribe__form" action="#" method="POST">
+        <input type="email" placeholder="Your Email Address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="lux-footer-subscribe__logo">
+        <img src="{{ asset('image/footer/usa-today-best-stores-2025-round.png') }}" alt="USA Today 2025 America's Best Stores">
       </div>
     </div>
   </div>
-  @endif
+
+  {{-- 二开：版权底栏重做（去掉支付图标，加版权文字 + 底部链接） --}}
+  @hookwrapper('footer.copyright')
+  <div class="footer-bottom">
+    <div class="container-fluid">
+      <p class="footer-bottom__copyright">&copy; {{ date('Y') }} {{ system_setting('base.meta_title') }}. All Rights Reserved</p>
+      <div class="footer-bottom__links">
+        <a href="#">Privacy</a>
+        <span>&middot;</span>
+        <a href="#">Terms</a>
+        <span>&middot;</span>
+        <a href="{{ shop_route('home.index') }}/sitemap">Sitemap</a>
+        <span>&middot;</span>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="footer-bottom__social">
+        @foreach ($footer_content['content']['intro']['social_network'] ?? [] as $item)
+        <a href="{{ $item['link'] }}" target="_blank"><img src="{{ image_origin($item['image']) }}" class="img-fluid"></a>
+        @endforeach
+      </div>
+    </div>
+  </div>
   @endhookwrapper
 
   @hook('footer.after')

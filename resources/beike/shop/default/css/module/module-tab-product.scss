@@ -14,20 +14,22 @@
   }
 
   .nav {
-    margin-bottom: 28px;
-    margin-top: -10px;
+    margin-bottom: 24px;
+    margin-top: -6px;
 
     .nav-link {
-      color: #969a9e;
-      font-size: 1.2rem;
+      color: #70757b;
+      font-size: 0.84rem;
       border-bottom: 2px solid transparent;
-      margin: 0 17px;
-      font-weight: bold;
-      padding: 0.3rem .2rem;
+      margin: 0 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.15rem;
 
       @media (max-width: 768px) {
         padding: 0.2rem .7rem;
-        font-size: 13px;
+        font-size: 12px;
         margin: 0;
       }
       box-shadow: none;

@@ -283,4 +283,9 @@ return [
     'text_max_width'               => '文字最大宽度',
     'second_link_optional'         => '第二按钮（选填）',
     'lux_icons_carousel'           => '横向滑动条（大屏默认可见 4 格，多项用左右箭头滑动）',
+    'sell_form_mode'               => '启用「卖表」表单模式',
+    'sell_form_action'             => '表单提交地址',
+    'sell_form_email_placeholder'  => '邮件输入框占位文字',
+    'sell_form_brands'             => '品牌列表（逗号分隔）',
+    'sell_form_brands_tip'         => '例：Rolex,Omega,Patek Philippe',
 ];

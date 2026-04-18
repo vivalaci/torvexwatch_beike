@@ -48,6 +48,9 @@
         </div>
       </div>
 
+      <div class="module-edit-title">{{ __('admin/builder.text_btn_text') }}</div>
+      <text-i18n v-model="module.btn_text" style="margin-bottom: 10px"></text-i18n>
+
       <div>
         <div style="margin-right: 20px;">
           <div class="module-edit-title">{{ __('admin/builder.btn_bg') }}</div>
@@ -58,6 +61,21 @@
           <el-color-picker v-model="module.btn_color" size="small" class="mb-1"></el-color-picker>
         </div>
       </div>
+
+      <div class="module-edit-title" style="margin-top:10px">{{ __('admin/builder.sell_form_mode') }}</div>
+      <el-switch v-model="module.show_sell_form" class="mb-2"></el-switch>
+
+      <template v-if="module.show_sell_form">
+        <div class="module-edit-title">{{ __('admin/builder.sell_form_action') }}</div>
+        <el-input v-model="module.form_action" size="mini" class="mb-1" placeholder="/sell-your-watch"></el-input>
+
+        <div class="module-edit-title">{{ __('admin/builder.sell_form_email_placeholder') }}</div>
+        <el-input v-model="module.form_email_placeholder" size="mini" class="mb-1" placeholder="Email Address"></el-input>
+
+        <div class="module-edit-title">{{ __('admin/builder.sell_form_brands') }}</div>
+        <el-input v-model="module.form_brands" type="textarea" :rows="3" size="mini" class="mb-1" placeholder="Rolex,Omega,Patek Philippe"></el-input>
+        <div class="tag" style="font-size:11px;color:#999">{{ __('admin/builder.sell_form_brands_tip') }}</div>
+      </template>
     </div>
   </div>
 </template>
@@ -106,6 +124,7 @@ Vue.component('module-editor-img-text-banner', {
       text_color: '#222222',
       btn_bg: '#fd560f',
       btn_color: '#ffffff',
+      btn_text: languagesFill(''),
       image_position: 'right',
       text_position: 'left',
       text_max_width: '',
@@ -116,7 +135,11 @@ Vue.component('module-editor-img-text-banner', {
       link: {
         type: 'product',
         value:''
-      }
+      },
+      show_sell_form: false,
+      form_action: '',
+      form_email_placeholder: 'Email Address',
+      form_brands: 'Rolex,Omega,Patek Philippe,Audemars Piguet,TAG Heuer,Breitling,IWC,Cartier'
     }
 
     app.source.modules.push(register)

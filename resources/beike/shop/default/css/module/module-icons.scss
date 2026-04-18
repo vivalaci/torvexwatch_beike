@@ -15,16 +15,16 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 132px;
+    height: 160px;
     margin-left: auto;
     margin-right: auto;
 
     @media (min-width: 768px) {
-      height: 168px;
+      height: 210px;
     }
 
     @media (min-width: 1200px) {
-      height: 188px;
+      height: 270px;
     }
 
     img {
@@ -37,10 +37,106 @@
     }
   }
 
-  .title {
-    @media (min-width: 768px) {
-      font-size: 1rem;
-      font-weight: bold;
+  /* Bob's 风格：非 lux-icons-collections（即非 Swiper 轮播）的 icons 网格 */
+  &:not(.lux-icons-collections) {
+    /* 容器水平内缩：Bob's 约 90-92% 宽度 */
+    .container-fluid {
+      padding-left: 3.5%;
+      padding-right: 3.5%;
+
+      @media (min-width: 1200px) {
+        padding-left: 4%;
+        padding-right: 4%;
+      }
     }
+
+    /* 标题区：SHOP 标签（来自 sub_title 字段）位于主标题上方 */
+    .lux-icons-pre-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      font-weight: 400;
+      color: #555;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    /* 标题行：左侧主标题 + 右侧 Shop All 链接 */
+    .lux-icons-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    .module-title {
+      font-size: 1.55rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.85rem;
+      }
+    }
+
+    .lux-icons-shop-all {
+      font-size: 0.82rem;
+      color: #333;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+      margin-left: 1rem;
+
+      &:hover { color: #000; }
+    }
+
+    /* 每个卡片 <a>：flex 列，品牌名在上、产品名在下 */
+    a {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+
+      .image-item { order: 0; }
+
+      .sub-title {
+        order: 1;
+        margin-top: 0.55rem;
+        margin-bottom: 0;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #888;
+        font-weight: 400;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+
+      .title {
+        order: 2;
+        margin-top: 0.15rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #111;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+
+        @media (min-width: 768px) {
+          font-size: 1.08rem;
+        }
+      }
+    }
+  }
+}
+
+/* 非轮播 icons 的 module-item 容器：增加垂直 padding 使品牌条 + 图标合计填满视口 */
+.page-home #home-modules-box > .module-item:has(.module-icons:not(.lux-icons-collections)),
+.module-item:has(.module-icons:not(.lux-icons-collections)) {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+
+  @media (min-width: 768px) {
+    padding-top: 2rem;
+    padding-bottom: 3.5rem;
   }
 }

@@ -198,7 +198,7 @@ $(function () {
     const $body = $('body');
     const $header = $('header');
     if (!$header.length) return;
-    const threshold = 40;
+    const threshold = 28;
     let $placeholder = $('.lux-header-placeholder');
 
     function updateHomeHeader() {

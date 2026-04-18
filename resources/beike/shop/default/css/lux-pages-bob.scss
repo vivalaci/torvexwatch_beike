@@ -7,12 +7,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;600&family=Inter:wght@400;500&display=swap');
 
 .module-info.module-pages.lux-pages-bob {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.3rem;
 
   .lux-pages-bob__heading {
-    margin: 0 0 1.75rem;
+    margin: 0 0 1.55rem;
     font-family: 'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
-    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-size: clamp(1.62rem, 3.2vw, 2.1rem);
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -25,10 +25,10 @@
   }
 
   .lux-pages-bob__grid--second {
-    margin-top: 2.75rem;
+    margin-top: 2.45rem;
 
     @media (min-width: 992px) {
-      margin-top: 3.25rem;
+      margin-top: 2.95rem;
     }
   }
 
@@ -38,8 +38,8 @@
 
   .lux-pages-bob-card__link-img {
     display: block;
-    margin: 0 0 0.85rem;
-    border-radius: 10px;
+    margin: 0 0 0.72rem;
+    border-radius: 8px;
     overflow: hidden;
     background: #f0f0f0;
 
@@ -53,11 +53,11 @@
   }
 
   .lux-pages-bob-card__meta {
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.45rem;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.66rem;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     line-height: 1.3;
     color: #111;
     text-transform: uppercase;
@@ -66,7 +66,7 @@
   .lux-pages-bob-card__title {
     margin: 0;
     font-family: 'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-size: clamp(0.98rem, 1.65vw, 1.15rem);
     font-weight: 600;
     line-height: 1.35;
     color: #111;
@@ -85,10 +85,10 @@
   .lux-pages-bob__actions {
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 2.2rem;
 
     @media (min-width: 992px) {
-      margin-top: 2.75rem;
+      margin-top: 2.45rem;
     }
   }
 
@@ -96,9 +96,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.65rem 2.5rem;
+    padding: 0.58rem 2.2rem;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.86rem;
     font-weight: 500;
     line-height: 1.2;
     text-decoration: none;

@@ -137,6 +137,9 @@ class DesignService
         $content['sub_title']  = $content['sub_title'][locale()] ?? '';
         $content['description']  = $content['description'][locale()] ?? '';
         $content['link'] = self::handleLink($content['link']['type'], $content['link']['value']);
+        if (isset($content['btn_text']) && is_array($content['btn_text'])) {
+            $content['btn_text'] = $content['btn_text'][locale()] ?? '';
+        }
 
         return $content;
     }

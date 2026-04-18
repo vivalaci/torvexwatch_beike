@@ -14,6 +14,11 @@ footer {
   position: relative;
   overflow: hidden;
 
+  > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   @media (max-width:768px) {
     border-top: 1px solid #eee;
   }
@@ -74,19 +79,23 @@ footer {
     }
   }
 
-  /* 父级 .container-fluid 已去掉全局 50px，此处单独恢复链结栏区原视觉宽度 */
   .footer-content {
     background-color: #333333;
-    color: #e8e8e8;
+    color: #bbb;
 
     @media (min-width: 768px) {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
+      padding-top: 3.2rem;
+      padding-bottom: 2.8rem;
     }
 
     @media (min-width: 992px) {
-      padding-left: 50px;
-      padding-right: 50px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    @media (min-width: 1400px) {
+      padding-left: 56px;
+      padding-right: 56px;
     }
 
     > .row {
@@ -98,37 +107,43 @@ footer {
           padding-right: 0;
         }
       }
+
+      @media (min-width: 992px) {
+        column-gap: 0;
+      }
     }
 
-    // .footer-content-left {
-
-    // }
-
     a {
-      color: #ccc;
+      color: #ececec;
+      font-size: 0.84rem;
 
       &:hover {
-        color: $primary;
+        color: #fff;
       }
     }
 
     .logo {
-      max-width: 240px;
-      margin-bottom: 10px;
+      max-width: 200px;
+      margin-bottom: 12px;
     }
 
     .text {
-      color: #d0d0d0;
+      color: #dfdfdf;
+      font-size: 0.82rem;
+      line-height: 1.45;
     }
 
     h6 {
       color: #fff;
-      font-size: 15px;
+      font-size: 1.02rem;
+      font-weight: 500;
+      letter-spacing: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       @media (min-width: 768px) {
-        margin-bottom: 20px;
+        margin-bottom: 0.95rem;
       }
 
       @media (max-width: 768px) {
@@ -158,7 +173,7 @@ footer {
     }
 
     .social-network {
-      margin-top: 10px;
+      margin-top: 14px;
       display: flex;
 
       > a {
@@ -170,7 +185,7 @@ footer {
         justify-content: center;
         transition: all .3s ease;
         &:hover {
-          transform: translateY(-5px);
+          transform: translateY(-3px);
         }
       }
     }
@@ -199,8 +214,9 @@ footer {
       ul.list-unstyled, .intro-wrap {
         margin-bottom: 0;
         li {
-          margin-bottom: 10px;
-          font-size: 14px;
+          margin-bottom: 0.5rem;
+          font-size: 0.84rem;
+          line-height: 1.35;
         }
 
         @media (max-width: 768px) {
@@ -214,25 +230,77 @@ footer {
   }
 
   .footer-bottom {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #e6e3dc;
-    color: #666;
+    background-color: #333333;
+    border-top: 0;
+    color: #999;
+    padding: 1.5rem 0 1.75rem;
+    text-align: center;
 
-    @media (min-width:768px) {
-      min-height: 60px;
+    .container-fluid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    @media (max-width:768px) {
-      padding: 10px 0;
-      .row.align-items-center, .d-flex {
-        justify-content: center;
+    &__copyright {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #999;
+    }
+
+    &__links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      a {
+        font-size: 0.8rem;
+        color: #999;
+        text-decoration: none;
+
+        &:hover {
+          color: #fff;
+          text-decoration: underline;
+        }
+      }
+
+      span {
+        color: #666;
+        font-size: 0.75rem;
       }
     }
 
-    .copyright-content {
-      p {
-        margin-bottom: 0;
+    &__social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 0.75rem;
+
+      a {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+
+        img {
+          filter: brightness(0) invert(0.7);
+          width: 100%;
+          height: auto;
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+
+          img {
+            filter: brightness(0) invert(1);
+          }
+        }
       }
     }
   }

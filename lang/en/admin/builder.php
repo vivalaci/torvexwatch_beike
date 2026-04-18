@@ -280,4 +280,9 @@ return [
     'text_max_width'               => 'Text Max Width',
     'second_link_optional'       => 'Second button (optional)',
     'lux_icons_carousel'         => 'Horizontal strip (4 items visible, use arrows for more)',
+    'sell_form_mode'             => 'Enable sell form mode',
+    'sell_form_action'           => 'Form submit URL',
+    'sell_form_email_placeholder' => 'Email placeholder text',
+    'sell_form_brands'           => 'Brand list (comma separated)',
+    'sell_form_brands_tip'       => 'e.g. Rolex,Omega,Patek Philippe',
 ];

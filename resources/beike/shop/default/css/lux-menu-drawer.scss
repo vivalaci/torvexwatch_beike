@@ -9,18 +9,36 @@
   --bs-offcanvas-width: min(100vw, 420px);
 
   .lux-offcanvas-menu-header {
-    background: #111;
-    padding: 0.75rem 1rem;
-    min-height: 48px;
+    background: #fff;
+    padding: 0.85rem 1.25rem;
+    min-height: 60px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e5e5 !important;
   }
 
   .lux-offcanvas-menu-body {
     min-height: 0;
     flex: 1 1 auto;
   }
+}
+
+.lux-drawer-logo {
+  display: flex;
+  align-items: center;
+  max-height: 38px;
+  img {
+    max-height: 38px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+.lux-drawer-close-btn {
+  margin-left: auto;
+  opacity: 0.6;
+  &:hover { opacity: 1; }
 }
 
 .lux-menu-drawer {
@@ -70,7 +88,7 @@
   }
 }
 
-/* 侧栏内 accordion（原 mobile-menu-wrap 样式迁入） */
+/* 侧栏内 accordion（Bob's 风格：大行高、无 chevron 左边框、细分隔线） */
 #offcanvas-mobile-menu {
   .mobile-menu-wrap {
     padding: 0;
@@ -80,7 +98,10 @@
     border-top: 1px solid #e5e5e5;
 
     .accordion-item {
+      border: none;
       border-bottom: 1px solid #e5e5e5;
+      border-radius: 0 !important;
+      background: transparent;
 
       .nav-item-text {
         display: flex;
@@ -89,26 +110,33 @@
 
         > a {
           flex: 1;
-          min-height: 48px;
-          padding-left: 1rem;
-          padding-right: 0.5rem;
+          min-height: 54px;
+          padding: 0 0.5rem 0 1.25rem;
           display: flex;
           align-items: center;
           color: #111;
-          font-weight: 500;
+          font-size: 15px;
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          text-decoration: none;
+
+          &:hover { color: #000; }
 
           .badge {
             position: relative;
-            margin-left: 13px;
-            font-weight: 400;
+            margin-left: 10px;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 7px;
+            border-radius: 10px;
 
             &::before {
               content: "";
               position: absolute;
               top: 50%;
               right: 100%;
-              transform: translate(0, -50%);
-              border: 5px solid #0000;
+              transform: translateY(-50%);
+              border: 4px solid transparent;
               border-right-color: inherit;
             }
           }
@@ -116,30 +144,27 @@
 
         > span {
           width: 48px;
-          min-height: 48px;
+          min-height: 54px;
           display: flex;
-          border-left: 1px solid #e5e5e5;
           align-items: center;
           justify-content: center;
           cursor: pointer;
+          color: #888;
+          transition: color 0.15s;
 
-          &:active {
-            background-color: #eee;
-          }
+          &:hover { color: #111; }
 
           &[aria-expanded="true"] {
-            background-color: #eee;
-
-            i {
-              transform: rotate(180deg);
-            }
+            i { transform: rotate(180deg); }
           }
+
+          i { transition: transform 0.2s ease; }
         }
       }
 
       > .accordion-collapse {
-        padding: 0 12px;
-        border-top: 1px solid #e5e5e5;
+        padding: 0 0 0.25rem 0;
+        background: #f8f8f8;
 
         .children-group {
           .children-title {
@@ -147,30 +172,32 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0 1rem 0 1.5rem;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
 
             span {
-              margin-right: -10px;
-              width: 44px;
-              height: 44px;
+              width: 40px;
+              height: 40px;
               display: flex;
               align-items: center;
               justify-content: center;
-
-              &:active {
-                background-color: #eee;
-              }
+              color: #888;
 
               &[aria-expanded="true"] {
-                i::before {
-                  content: "\F63B";
-                }
+                i::before { content: "\F63B"; }
               }
             }
           }
 
           .nav {
+            padding: 0 1rem 0.5rem 1.5rem;
             a {
               color: #555;
+              font-size: 14px;
+              padding: 0.35rem 0;
+              &:hover { color: #111; }
             }
           }
         }

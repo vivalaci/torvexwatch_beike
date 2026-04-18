@@ -10,7 +10,19 @@
               <div class="fs-4 sub-title mb-4">{{ $content['sub_title'] }}</div>
               @endif
               <p class="description">{{ $content['description'] }}</p>
-              <a href="{{ $content['link'] }}" class="btn btn-lg" style="background-color: {{ $content['btn_bg'] ?? '#fd560f' }}; color: {{ $content['btn_color'] ?? '#fff' }}">{{ __('common.view_more') }}</a>
+              @if (!empty($content['show_sell_form']))
+              <form class="sell-watch-form" action="{{ $content['form_action'] ?? '' }}" method="GET">
+                <input type="email" name="email" class="sell-form-input" placeholder="{{ $content['form_email_placeholder'] ?? 'Email Address' }}" required>
+                <select name="brand" class="sell-form-select">
+                  @foreach (explode(',', $content['form_brands'] ?? 'Rolex,Omega,Patek Philippe,Audemars Piguet,TAG Heuer,Breitling,IWC,Cartier') as $brand)
+                  <option value="{{ trim($brand) }}">{{ trim($brand) }}</option>
+                  @endforeach
+                </select>
+                <button type="submit" class="sell-form-btn" style="background-color: {{ $content['btn_bg'] ?? '#222' }}; color: {{ $content['btn_color'] ?? '#fff' }}">{{ $content['btn_text'] ?? __('common.view_more') }}</button>
+              </form>
+              @else
+              <a href="{{ $content['link'] }}" class="btn btn-lg" style="background-color: {{ $content['btn_bg'] ?? '#fd560f' }}; color: {{ $content['btn_color'] ?? '#fff' }}">{{ $content['btn_text'] ?? __('common.view_more') }}</a>
+              @endif
             </div>
           </div>
         </div>

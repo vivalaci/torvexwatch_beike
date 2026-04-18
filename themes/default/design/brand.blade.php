@@ -13,7 +13,7 @@
             <div class="lux-brand-strip-scroll">
               @foreach ($content['brands'] as $brand)
                 <a href="{{ $brand['url'] }}" class="lux-brand-strip-item text-decoration-none">
-                  <img src="{{ $brand['logo'] ?? asset('image/default/banner-1.png') }}" alt="{{ $brand['name'] }}" class="lux-brand-strip-img seo-img" loading="lazy" width="48" height="48">
+                  <img src="{{ $brand['logo'] ?? asset('image/default/banner-1.png') }}" alt="{{ $brand['name'] }}" class="lux-brand-strip-img seo-img" loading="lazy" width="50" height="50">
                   <span class="lux-brand-strip-name">{{ $brand['name'] }}</span>
                 </a>
               @endforeach

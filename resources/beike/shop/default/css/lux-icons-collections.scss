@@ -10,6 +10,17 @@
   --lux-icons-bullet: #a8a8a8;
   --lux-icons-bullet-active: #111;
 
+  /* 与品牌横条、商品模块保持一致的内容宽度（约 92%） */
+  > .container-fluid {
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+
+    @media (min-width: 1200px) {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+  }
+
   .lux-icons-collections-page-title.module-title {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 600;
@@ -17,7 +28,7 @@
   }
 
   .lux-icons-swiper-root {
-    margin-top: 0.35rem;
+    margin-top: 0.45rem;
   }
 
   .lux-icons-swiper {
@@ -82,9 +93,9 @@
   }
 
   .lux-icons-collections-title {
-    margin: 0.75rem 0 0;
+    margin: 0.68rem 0 0;
     padding: 0 6px;
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: clamp(0.78rem, 1.4vw, 0.95rem);
     font-weight: 600;
     text-align: center;
     line-height: 1.35;
@@ -94,8 +105,8 @@
 
   a.lux-icons-collections-cta {
     display: block;
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
+    margin-top: 0.26rem;
+    font-size: 0.76rem;
     text-decoration: underline;
     text-underline-offset: 3px;
     color: #333;
@@ -163,7 +174,7 @@
     transform: none !important;
     width: 100% !important;
     max-width: 100%;
-    margin: 0.65rem 0 0 !important;
+    margin: 0.56rem 0 0 !important;
     padding: 0.25rem 0 !important;
     z-index: 6;
     display: flex !important;

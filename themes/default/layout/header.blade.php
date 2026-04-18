@@ -93,16 +93,18 @@
 
   <div class="header-content d-none d-lg-block">
     <div class="container-fluid navbar-expand-lg">
+      <div class="header-left">
+        <nav class="menu-wrap d-none" aria-hidden="true" aria-label="{{ __('shop/header.main_navigation') }}">
+          @include('shared.menu-pc')
+        </nav>
+      </div>
       @hookwrapper('header.menu.logo')
       <div class="logo"><a href="{{ shop_route('home.index') }}">
           <img src="{{ image_origin(system_setting('base.logo')) }}" class="img-fluid" alt="{{ system_setting('base.meta_title', 'BeikeShop开源好用的跨境电商系统') }}"></a>
       </div>
       @endhookwrapper
-      {{-- 横向 mega 菜单改为收入侧栏，与三道横线按钮共用同一套后台菜单数据 --}}
-      <nav class="menu-wrap d-none" aria-hidden="true" aria-label="{{ __('shop/header.main_navigation') }}">
-        @include('shared.menu-pc')
-      </nav>
-      <div class="right-btn">
+      <div class="header-right">
+        <div class="right-btn">
         <ul class="navbar-nav flex-row align-items-center">
           @hookwrapper('header.menu.icon')
           <li class="nav-item"><a href="#offcanvas-search-top" data-bs-toggle="offcanvas" class="nav-link"><img src="{{ asset('image/icons/search.svg') }}" class="img-fluid"></a></li>
@@ -153,6 +155,7 @@
           </li>
         </ul>
       </div>
+      </div>
     </div>
   </div>
 
@@ -181,8 +184,11 @@
   </div>
   <div class="offcanvas offcanvas-end lux-offcanvas-menu" tabindex="-1" id="offcanvas-mobile-menu" aria-labelledby="offcanvasMobileMenuLabel">
     <div class="offcanvas-header lux-offcanvas-menu-header border-0 flex-shrink-0">
+      <a href="{{ shop_route('home.index') }}" class="lux-drawer-logo" data-bs-dismiss="offcanvas">
+        <img src="{{ image_origin(system_setting('base.logo')) }}" class="img-fluid" alt="{{ system_setting('base.meta_title', '') }}">
+      </a>
       <span class="visually-hidden" id="offcanvasMobileMenuLabel">{{ __('common.menu') }}</span>
-      <button type="button" class="btn-close btn-close-white ms-0" data-bs-dismiss="offcanvas" aria-label="{{ __('shop/header.drawer_close') }}"></button>
+      <button type="button" class="btn-close lux-drawer-close-btn" data-bs-dismiss="offcanvas" aria-label="{{ __('shop/header.drawer_close') }}"></button>
     </div>
     <div class="offcanvas-body lux-offcanvas-menu-body d-flex flex-column p-0 overflow-hidden">
       @include('shared.menu-drawer')

@@ -207,7 +207,7 @@ header {
   .header-content {
     position: relative;
     background-color: #fff;
-    padding: 1rem 0;
+    padding: 0.9rem 0;
     transition: all .2s ease-in-out;
     // border-bottom: 1px solid #eee;
 
@@ -222,7 +222,7 @@ header {
       left: 0;
       right: 0;
       z-index: 999;
-      padding: .4rem 0;
+      padding: .45rem 0;
       border-color: transparent;
       box-shadow: 0 6px 12px 0 rgba(0, 0, 0, .06);
     }
@@ -231,6 +231,32 @@ header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+    }
+
+    .header-left,
+    .header-right {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .header-right {
+      justify-content: flex-end;
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      img {
+        max-width: 200px;
+        max-height: 50px;
+        @media (max-width: 1200px) {
+          max-width: 160px;
+        }
+      }
     }
 
     .menu-wrap {
@@ -302,16 +328,6 @@ header {
               color: $primary;
             }
           }
-        }
-      }
-    }
-
-    .logo {
-      img {
-        max-width: 200px;
-        max-height: 50px;
-        @media (max-width: 1200px) {
-          max-width: 160px;
         }
       }
     }
@@ -589,7 +605,7 @@ body.page-home {
 
     &.lux-header-over-hero {
       .top-wrap {
-        background: rgba(247, 247, 247, 0.92);
+        background: rgba(247, 247, 247, 0.88);
         backdrop-filter: blur(8px);
         color: var(--lux-text);
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -611,6 +627,7 @@ body.page-home {
         background: transparent !important;
         border-bottom: none !important;
         box-shadow: none !important;
+        padding: 0.72rem 0 !important;
 
         .nav-item:hover > .nav-link {
           color: rgba(255, 255, 255, 0.9) !important;
@@ -641,7 +658,7 @@ body.page-home {
         }
 
         .logo img {
-          filter: brightness(0) invert(1);
+          filter: none;
         }
       }
 
@@ -650,7 +667,7 @@ body.page-home {
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 
         .mobile-content img {
-          filter: brightness(0) invert(1);
+          filter: none;
         }
       }
     }
@@ -689,7 +706,7 @@ body.page-home {
       .header-content {
         background: #fff !important;
         border-bottom: 1px solid #eee !important;
-        padding: 0.5rem 0 !important;
+        padding: 0.52rem 0 !important;
 
         .nav-item:hover > .nav-link {
           color: $primary !important;

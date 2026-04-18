@@ -27,7 +27,7 @@
 
 .product-wrap {
   text-align: center;
-  padding-bottom: .7rem;
+  padding-bottom: .55rem;
   transition: all 0.3s ease-in-out;
   background-color: #fff;
 
@@ -90,10 +90,10 @@
   }
 
   .image {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 10px;
 
     > a {
       opacity: 1;
@@ -179,26 +179,28 @@
   }
 
   .product-name {
-    height: 40px;
+    height: 48px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+    line-height: 1.45;
   }
 
   .product-price {
     .price-new {
-      color: $primary;
-      font-weight: bold;
-      font-size: 1rem;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.05rem;
 
       @media (max-width: 768px) {
-        font-size: .8rem;
+        font-size: .85rem;
       }
     }
 
@@ -206,6 +208,7 @@
       color: #aaa;
       margin-left: 4px;
       text-decoration: line-through;
+      font-size: 0.88rem;
     }
   }
 }
@@ -226,6 +229,16 @@
 /* 注意：勿对 .product-grid（与 col-* 同元素）设 width:100% 或覆盖 flex，否则会变成单列 */
 .module-product,
 .module-tab-product {
+  /* 宽屏（container-fluid）添加百分比内边距，与品牌横条/图标模块保持视觉一致（约 92%） */
+  > .container-fluid {
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+
+    @media (min-width: 1200px) {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+  }
   .row > [class*='col-'] {
     display: flex;
     flex-direction: column;
@@ -241,18 +254,18 @@
 
     .image {
       flex: 0 0 auto;
-      height: 168px;
-      margin-bottom: 10px;
+      height: 200px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
 
       @media (min-width: 992px) {
-        height: 198px;
+        height: 260px;
       }
 
       @media (min-width: 1400px) {
-        height: 218px;
+        height: 300px;
       }
 
       > a {
@@ -291,14 +304,24 @@
 
     .product-name {
       height: auto !important;
-      min-height: 4.5em;
+      min-height: 4.35em;
       -webkit-line-clamp: 3;
       line-clamp: 3;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
     }
 
     .product-price {
       margin-top: auto;
+
+      .price-new {
+        color: #111;
+        font-size: 0.96rem;
+        font-weight: 600;
+      }
+
+      .price-old {
+        font-size: 0.82rem;
+      }
     }
   }
 }
