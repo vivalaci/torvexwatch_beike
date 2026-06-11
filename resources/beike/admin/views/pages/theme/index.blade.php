@@ -10,7 +10,7 @@
     <div class="card-header d-flex justify-content-between align-items-start">
       <h5 class="card-title">{{ __('admin/theme.page_title') }}</h5>
       <div class="d-flex">
-        <a href="{{ admin_route('marketing.index') }}?type=theme" class="btn btn-outline-info">{{ __('common.get_more') }}</a>
+        <a href="{{ admin_route('marketing.index') }}?type=theme" class="btn btn-outline-info d-none">{{ __('common.get_more') }}</a>
         @hook('admin.theme.index.content.header.right.btn')
       </div>
     </div>

@@ -126,11 +126,11 @@ class Sidebar extends Component
                 'children' => $this->getSettingSubRoutes(),
             ],
             [
-                'route'    => 'help.index',
-                'title'    => trans('admin/common.help_index'),
+                'route'    => url('/help.html'),
+                'title'    => '幫助',
                 'icon'     => 'bi bi-question-circle',
-                'prefixes' => ['help'],
-                'children' => [],
+                'prefixes' => [],
+                'blank'    => true,
             ],
         ];
 
@@ -291,7 +291,7 @@ class Sidebar extends Component
      */
     private function getDesignSubPrefix()
     {
-        $prefix = ['theme', 'design_menu', 'design_app_home', 'app_push'];
+        $prefix = ['theme', 'design_menu', 'design_app_home']; // 'app_push' 暂时隐藏，启用 APP 后追加
 
         return hook_filter('admin.sidebar.design.prefix', $prefix);
     }
@@ -416,7 +416,7 @@ class Sidebar extends Component
             ['route' => 'design.index', 'prefixes' => ['design'], 'blank' => true, 'hide_mobile' => true],
             ['route' => 'design_footer.index', 'prefixes' => ['design_footer'], 'blank' => true, 'hide_mobile' => true],
             ['route' => 'design_app_home.index', 'prefixes' => ['design_app_home'], 'blank' => false, 'hide_mobile' => true],
-            ['route' => 'app_push.index', 'prefixes' => ['app_push'], 'blank' => false, 'hide_mobile' => true],
+            // ['route' => 'app_push.index', 'prefixes' => ['app_push'], 'blank' => false, 'hide_mobile' => true], // 暂时隐藏：APP 推送，启用 APP 后取消注释
         ];
 
         return hook_filter('admin.sidebar.design_routes', $routes);
@@ -440,8 +440,6 @@ class Sidebar extends Component
             $types    = $originTypes->reject("plugins.{$type}");
             $routes[] = ['route' => "plugins.{$type}", 'prefixes' => ['plugins'], 'title' => trans("admin/plugin.{$type}"), 'excludes' => $types->toArray()];
         }
-
-        $routes[] = ['route' => 'marketing.index', 'prefixes' => ['marketing']];
 
         return hook_filter('admin.sidebar.plugins_routes', $routes);
     }

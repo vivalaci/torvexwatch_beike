@@ -14,6 +14,7 @@ namespace App\Http\Middleware;
 use Beike\Repositories\FooterRepo;
 use Beike\Repositories\LanguageRepo;
 use Beike\Repositories\MenuRepo;
+use Beike\Services\DesignService;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -70,7 +71,58 @@ class ShareViewData
             View::share('shop_base_url', shop_route('home.index'));
             View::share('footer_content', hook_filter('footer.content', FooterRepo::handleFooterData()));
             View::share('menu_content', hook_filter('menu.content', MenuRepo::handleMenuData()));
+            View::share('drawer_products', $this->loadDrawerProducts());
         }
+    }
+
+    /**
+     * 从首页第一个 icons 图标模块取卡片数据，供抽屉横滑卡片使用
+     * 数据映射：$item['image'] -> 卡片图，$item['text'] -> 卡片名，$item['url'] -> 链接
+     */
+    private function loadDrawerProducts(): array
+    {
+        try {
+            $modules = system_setting('base.design_setting')['modules'] ?? [];
+            foreach ($modules as $module) {
+                if (($module['code'] ?? '') === 'icons' && !empty($module['content']['images'])) {
+                    $content = DesignService::handleModuleContent('icons', $module['content']);
+                    $images  = array_slice($content['images'] ?? [], 0, 4);
+
+                    // 批量取分类图片，避免 N+1
+                    $catIds = [];
+                    foreach ($images as $img) {
+                        if (($img['link']['type'] ?? '') === 'category' && !empty($img['link']['value'])) {
+                            $catIds[] = $img['link']['value'];
+                        }
+                    }
+                    $categories = [];
+                    if ($catIds) {
+                        $categories = \Beike\Models\Category::query()
+                            ->whereIn('id', array_unique($catIds))
+                            ->pluck('image', 'id')
+                            ->toArray();
+                    }
+
+                    $items = [];
+                    foreach ($images as $img) {
+                        $picture = $img['image'] ?? '';
+                        $catId   = ($img['link']['type'] ?? '') === 'category' ? ($img['link']['value'] ?? null) : null;
+                        if ($catId && !empty($categories[$catId])) {
+                            $picture = image_origin($categories[$catId]);
+                        }
+                        $items[] = [
+                            'name'   => $img['text'] ?? '',
+                            'url'    => $img['url']  ?? 'javascript:void(0)',
+                            'images' => [$picture],
+                        ];
+                    }
+                    return $items;
+                }
+            }
+        } catch (\Throwable $e) {
+            // 静默失败，不影响页面渲染
+        }
+        return [];
     }
 
     /**

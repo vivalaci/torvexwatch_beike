@@ -96,6 +96,10 @@
         </div>
         @endforeach
       </div>
+      @php $viewAllUrl = $floorUrl ?: route('shop.products.search'); @endphp
+      <div class="lux-icons-view-all-wrap">
+        <a href="{{ $viewAllUrl }}" class="lux-icons-view-all-btn">View All Models</a>
+      </div>
     </div>
   </div>
 @endif

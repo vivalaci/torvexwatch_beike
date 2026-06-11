@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<!-- ==================================================================
+     LONG DOCUMENT TEMPLATE · parchment design system
+     後台管理使用手冊 · BeikeShop 二開版奢侈品商城
+     ================================================================== -->
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>後台管理使用手冊</title>
+<meta name="author" content="開發團隊">
+<meta name="description" content="BeikeShop 二開版奢侈品商城後台管理完整操作指南，適用於店鋪運營人員">
+<meta name="keywords" content="後台管理,使用手冊,BeikeShop,商品管理,訂單管理">
+<meta name="generator" content="Kami">
+<style>
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: #f5f4ed;
+    @top-right {
+      content: string(section-title);
+      font-family: "TsangerJinKai02", "Source Han Serif TC", "Noto Serif CJK TC", Georgia, serif;
+      font-size: 8pt;
+      color: #6b6a64;
+    }
+    @bottom-center {
+      content: counter(page) "  ·  後台管理使用手冊";
+      font-family: "TsangerJinKai02", "Source Han Serif TC", "Noto Serif CJK TC", Georgia, serif;
+      font-size: 9pt;
+      color: #6b6a64;
+    }
+  }
+  @page:first {
+    @top-right { content: ""; }
+    @bottom-center { content: ""; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+    --serif: "TsangerJinKai02", "Source Han Serif TC", "Noto Serif CJK TC", "Songti TC", "STSong", Georgia, serif;
+    --sans: var(--serif);
+    --mono: "JetBrains Mono", "SF Mono", Consolas, "TsangerJinKai02", "Source Han Serif TC", monospace;
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
+  }
+
+  html, body { background: var(--parchment); }
+
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm 22mm 22mm 22mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    letter-spacing: 0.3pt;
+    widows: 3;
+    orphans: 3;
+  }
+
+  .sans { font-family: var(--sans); }
+
+  /* ========== COVER ========== */
+  .cover {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40mm 0 0 0;
+    break-after: page;
+  }
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    margin-bottom: 18pt;
+  }
+  .cover-title {
+    font-size: 36pt;
+    font-weight: 500;
+    color: var(--near-black);
+    line-height: 1.15;
+    letter-spacing: 0.3pt;
+    margin-bottom: 16pt;
+  }
+  .cover-sub {
+    font-family: var(--sans);
+    font-size: 14pt;
+    color: var(--olive);
+    line-height: 1.5;
+    max-width: 85%;
+    margin-bottom: 30pt;
+  }
+  .cover-meta {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+  .cover-meta strong { color: var(--dark-warm); font-weight: 500; }
+
+  /* ========== TOC ========== */
+  .toc { break-after: page; }
+  .toc h2 {
+    font-size: 22pt;
+    font-weight: 500;
+    margin-bottom: var(--rhythm-module);
+    border-left: 2.5pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding-left: 8pt;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6pt 0;
+    border-bottom: 0.3pt dotted var(--border);
+    font-size: 11pt;
+    text-decoration: none;
+    color: var(--near-black);
+  }
+  .toc-item:last-of-type { border-bottom: none; }
+  .toc-item:hover .toc-title { color: var(--brand); }
+  .toc-num { color: var(--brand); font-weight: 500; min-width: 30pt; }
+  .toc-title { flex: 1; color: var(--near-black); padding-left: 6pt; }
+  .toc-sub { color: var(--stone); font-size: 9.5pt; padding-left: 36pt; }
+
+  /* ========== HEADINGS ========== */
+  h1 {
+    font-size: 22pt;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 10pt 0;
+    border-left: 2.5pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding-left: 8pt;
+    color: var(--near-black);
+    break-after: avoid;
+  }
+  h2 {
+    font-size: 16pt;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 24pt 0 8pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+    string-set: section-title content();
+  }
+  h3 {
+    font-size: 13pt;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 18pt 0 6pt 0;
+    color: var(--dark-warm);
+    break-after: avoid;
+  }
+  h4 {
+    font-size: 11pt;
+    font-weight: 500;
+    margin: 14pt 0 4pt 0;
+    color: var(--olive);
+  }
+  .chapter-num {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    margin-bottom: 6pt;
+  }
+
+  /* ========== PARAGRAPHS ========== */
+  p {
+    margin: 0 0 10pt 0;
+    line-height: 1.55;
+    color: var(--near-black);
+    widows: 2;
+    orphans: 2;
+  }
+  .lead {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--dark-warm);
+    margin-bottom: var(--rhythm-module);
+  }
+  .hl { color: var(--brand); font-weight: 500; }
+  strong { font-weight: 500; }
+
+  /* ========== LISTS ========== */
+  ul, ol {
+    margin: 6pt 0 10pt 0;
+    padding-left: 20pt;
+    line-height: 1.55;
+  }
+  li { margin-bottom: 4pt; }
+  ul li::marker { color: var(--brand); }
+  ol li::marker { color: var(--brand); font-weight: 500; }
+
+  /* ========== QUOTE / CALLOUT ========== */
+  blockquote, .quote {
+    border-left: 2pt solid var(--brand);
+    margin: 12pt 0;
+    padding: 4pt 0 4pt 16pt;
+    color: var(--olive);
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+  .callout {
+    background: var(--ivory);
+    border-left: 2pt solid var(--brand);
+    padding: 10pt 14pt;
+    border-radius: 3pt;
+    margin: 12pt 0;
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+  .callout p { margin-bottom: 4pt; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-warn {
+    background: var(--ivory);
+    border-left: 2pt solid #8a4a1b;
+    padding: 10pt 14pt;
+    border-radius: 3pt;
+    margin: 12pt 0;
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+  .callout-warn p { margin-bottom: 4pt; color: var(--olive); }
+  .callout-warn p:last-child { margin-bottom: 0; }
+  .takeaway {
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .takeaway-label {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--brand);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    margin-bottom: 4pt;
+  }
+
+  /* ========== TAG / NAV PATH ========== */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--brand);
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 1pt 6pt;
+    border-radius: 3pt;
+    margin-right: 2pt;
+  }
+  .nav-path {
+    font-family: var(--sans);
+    font-size: 9.5pt;
+    color: var(--olive);
+    margin: 0 0 10pt 0;
+    line-height: 1.6;
+  }
+  .nav-path .tag { margin: 0 2pt; }
+  .nav-arrow { color: var(--stone); margin: 0 2pt; }
+
+  /* ========== CODE ========== */
+  code {
+    font-family: var(--mono);
+    font-size: 9pt;
+    background: var(--ivory);
+    padding: 1pt 4pt;
+    border-radius: 2pt;
+    color: var(--dark-warm);
+    border: 0.3pt solid var(--border-soft);
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 9pt;
+    line-height: 1.5;
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 10pt 0;
+    white-space: pre-wrap;
+    color: var(--near-black);
+    break-inside: avoid;
+    border: 0.3pt solid var(--border);
+  }
+  pre code { background: transparent; padding: 0; font-size: inherit; border: none; }
+
+  /* ========== TABLE ========== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin: 12pt 0;
+    break-inside: avoid;
+  }
+  table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--dark-warm);
+    padding: 6pt 8pt;
+    border-bottom: 1pt solid var(--border);
+    background: transparent;
+  }
+  table td {
+    padding: 5pt 8pt;
+    border-bottom: 0.3pt solid var(--border-soft);
+    vertical-align: top;
+  }
+  table.compact th { padding: 3pt 6pt; font-size: 8pt; }
+  table.compact td { padding: 2pt 6pt; font-size: 8pt; line-height: 1.4; }
+  table.striped tbody tr:nth-child(even) td { background: var(--ivory); }
+
+  /* ========== FIGURE ========== */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figcaption { font-family: var(--sans); font-size: 9pt; color: var(--stone); margin-top: 6pt; }
+
+  /* ========== Q&A BLOCK ========== */
+  .qa-block {
+    border-radius: 4pt;
+    margin: 10pt 0;
+    break-inside: avoid;
+  }
+  .qa-q {
+    font-weight: 500;
+    color: var(--near-black);
+    margin-bottom: 4pt;
+    padding: 8pt 12pt 4pt 12pt;
+    background: var(--ivory);
+    border-radius: 4pt 4pt 0 0;
+    border-left: 2pt solid var(--brand);
+    font-size: 10pt;
+  }
+  .qa-a {
+    padding: 4pt 12pt 8pt 12pt;
+    background: var(--ivory);
+    border-radius: 0 0 4pt 4pt;
+    border-left: 2pt solid var(--border);
+    color: var(--olive);
+    font-size: 9.5pt;
+    margin-bottom: 10pt;
+  }
+
+  /* ========== CHAPTER BREAK ========== */
+  .chapter { break-before: page; }
+</style>
+</head>
+<body>
+
+<!-- ═════════════ COVER ═════════════ -->
+<section class="cover">
+  <div>
+    <div class="cover-eyebrow">運營手冊 · Operator Manual</div>
+    <div class="cover-title">後台管理<br>使用手冊</div>
+    <div class="cover-sub">BeikeShop 二開版奢侈品商城<br>適用於店鋪日常運營與管理的完整操作指南</div>
+  </div>
+  <div class="cover-meta">
+    <strong>適用對象：店鋪運營人員</strong><br>
+    版本 V1.0 &nbsp;·&nbsp; 2026 年 5 月<br>
+    如有疑問請聯絡開發團隊
+  </div>
+</section>
+
+<!-- ═════════════ 目錄 ═════════════ -->
+<section class="toc">
+  <h2>目錄</h2>
+
+  <div class="toc-item">
+    <span class="toc-num">01</span>
+    <span class="toc-title">登入與帳戶</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">02</span>
+    <span class="toc-title">控制台（首頁）</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">03</span>
+    <span class="toc-title">商品管理</span>
+  </div>
+  <div class="toc-sub">3.1 新增商品 &nbsp;·&nbsp; 3.2 編輯商品 &nbsp;·&nbsp; 3.3 商品分類 &nbsp;·&nbsp; 3.4 品牌管理 &nbsp;·&nbsp; 3.5 商品屬性</div>
+  <div class="toc-item">
+    <span class="toc-num">04</span>
+    <span class="toc-title">訂單管理</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">05</span>
+    <span class="toc-title">客戶管理</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">06</span>
+    <span class="toc-title">退貨換貨（RMA）</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">07</span>
+    <span class="toc-title">文章管理</span>
+  </div>
+  <div class="toc-sub">7.1 文章與文章分類 &nbsp;·&nbsp; 7.2 首頁 / 頁尾裝修 &nbsp;·&nbsp; 7.3 導航配置</div>
+  <div class="toc-item">
+    <span class="toc-num">08</span>
+    <span class="toc-title">插件管理</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">09</span>
+    <span class="toc-title">文件管理器</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">10</span>
+    <span class="toc-title">數據報表</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">11</span>
+    <span class="toc-title">郵件記錄</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">12</span>
+    <span class="toc-title">系統設定</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">13</span>
+    <span class="toc-title">管理員帳戶</span>
+  </div>
+  <div class="toc-item">
+    <span class="toc-num">14</span>
+    <span class="toc-title">常見操作 Q&amp;A</span>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 01：登入與帳戶 ═════════════ -->
+<section class="chapter" id="ch1">
+  <div class="chapter-num">01 · Login &amp; Account</div>
+  <h1>登入與帳戶</h1>
+
+  <h2>登入後台</h2>
+  <ol>
+    <li>在瀏覽器開啟後台地址（由開發團隊提供）</li>
+    <li>輸入<strong>管理員帳號</strong>和<strong>密碼</strong>，點擊「登入」</li>
+    <li>成功後即跳轉至控制台主頁</li>
+  </ol>
+
+  <h2>忘記密碼</h2>
+  <ol>
+    <li>在登入頁點擊「忘記密碼」</li>
+    <li>輸入管理員電郵，系統自動發送驗證碼</li>
+    <li>輸入驗證碼後重設新密碼</li>
+  </ol>
+
+  <h2>修改個人資料</h2>
+  <p>登入後，點擊右上角頭像或帳戶名稱，進入<strong>帳戶設定</strong>。</p>
+  <p>可修改：顯示名稱、密碼、聯絡方式。</p>
+</section>
+
+<!-- ═════════════ Chapter 02：控制台 ═════════════ -->
+<section class="chapter" id="ch2">
+  <div class="chapter-num">02 · Dashboard</div>
+  <h1>控制台（首頁）</h1>
+
+  <p class="lead">登入後台後，主頁為<strong>控制台</strong>，提供店鋪整體數據概覽。</p>
+
+  <h2>主要統計卡片</h2>
+  <table>
+    <thead>
+      <tr><th>卡片</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>今日銷售額</td><td>當天產生的訂單金額總計</td></tr>
+      <tr><td>今日訂單數</td><td>當天新增訂單數量</td></tr>
+      <tr><td>昨日 / 本週對比</td><td>與昨日或本週數據的對比分析</td></tr>
+      <tr><td>銷售趨勢圖</td><td>折線圖顯示近期銷售走勢</td></tr>
+      <tr><td>商品排行</td><td>最暢銷 / 最多瀏覽的商品列表</td></tr>
+      <tr><td>流量來源</td><td>訪客來源分析（搜索、直接訪問等）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>提示</strong>：如頁面數據未更新，可點擊右上角「<strong>清除快取</strong>」按鈕強制刷新。</p>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 03：商品管理 ═════════════ -->
+<section class="chapter" id="ch3">
+  <div class="chapter-num">03 · Product Management</div>
+  <h1>商品管理</h1>
+
+  <h2>3.1 新增商品</h2>
+  <p class="nav-path">路徑：<span class="tag">商品</span><span class="nav-arrow">→</span><span class="tag">商品列表</span><span class="nav-arrow">→</span> 右上角「新增商品」</p>
+
+  <h3>基本資訊（必填）</h3>
+  <table>
+    <thead>
+      <tr><th>欄位</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>商品名稱（英文）</td><td>顯示在前台的主要名稱，例：<code>Rolex Datejust 41 – 126334</code></td></tr>
+      <tr><td>商品名稱（繁體中文）</td><td>中文譯名（如需雙語顯示則填寫）</td></tr>
+      <tr><td>分類</td><td>從下拉清單選擇所屬分類，如：Rolex、手錶、二手錶</td></tr>
+      <tr><td>品牌</td><td>選擇對應品牌</td></tr>
+      <tr><td>排序</td><td>數字越小越靠前，預設 0</td></tr>
+      <tr><td>狀態</td><td><strong>上架</strong>（顯示在前台）或<strong>下架</strong>（隱藏）</td></tr>
+    </tbody>
+  </table>
+
+  <h3>價格與庫存</h3>
+  <table>
+    <thead>
+      <tr><th>欄位</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>原價</td><td>劃線價格，顯示為市場參考價</td></tr>
+      <tr><td>售價</td><td>實際銷售價格（<strong>必填</strong>）</td></tr>
+      <tr><td>庫存數量</td><td>可售數量；設為 <code>0</code> 則前台顯示「缺貨」</td></tr>
+      <tr><td>商品編號（SKU）</td><td>內部貨號，建議用品牌型號，如 <code>ROL-DJ41-126334</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>商品圖片</h3>
+  <ul>
+    <li>點擊「<strong>上傳圖片</strong>」，可一次選擇多張</li>
+    <li><strong>第一張圖</strong>為主圖，顯示於列表頁和搜索結果</li>
+    <li>建議尺寸：<strong>800×800px</strong> 或更高，正方形格式</li>
+    <li>支持格式：JPG、PNG、WebP、AVIF</li>
+  </ul>
+
+  <h3>商品詳情（富文本編輯器）</h3>
+  <ul>
+    <li>用工具列插入文字說明、規格表格、配圖</li>
+    <li>建議填寫：錶款規格（直徑、機芯、防水、表帶等）、成色描述、隨附配件</li>
+  </ul>
+  <div class="callout">
+    <p><strong>重要</strong>：英文版和繁體中文版需分別切換語言填寫，兩份內容<strong>相互獨立</strong>，互不影響。</p>
+  </div>
+
+  <h3>SKU 規格（如有多款式）</h3>
+  <ul>
+    <li>如一件商品有多個顏色 / 表帶選項，可在此設定多個 SKU</li>
+    <li>每個 SKU 可設置獨立售價和庫存</li>
+  </ul>
+  <div class="callout-warn">
+    <p><strong>注意</strong>：SKU 組合總數建議不超過 <strong>120 個</strong>（例：3 色 × 4 尺寸 × 2 材質 = 24 ✓；5 × 6 × 5 = 150 ✗），超出此數量頁面可能出現明顯延遲。</p>
+  </div>
+
+  <h3>SEO 設定（可選）</h3>
+  <table>
+    <thead>
+      <tr><th>欄位</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Meta 標題</td><td>瀏覽器標籤頁顯示的標題，建議 50–60 字符</td></tr>
+      <tr><td>Meta 描述</td><td>搜索引擎顯示的摘要，建議 120–160 字符</td></tr>
+      <tr><td>URL 別名</td><td>頁面網址後綴，用英文短橫線格式，如 <code>rolex-datejust-41-126334</code></td></tr>
+    </tbody>
+  </table>
+  <p>完成後點擊右上角「<strong>保存</strong>」。</p>
+
+  <h2>3.2 編輯商品</h2>
+  <p class="nav-path">路徑：<span class="tag">商品</span><span class="nav-arrow">→</span><span class="tag">商品列表</span><span class="nav-arrow">→</span> 目標商品右側「編輯」圖標</p>
+
+  <p>所有欄位均可修改，修改後點擊「<strong>保存</strong>」。如需快速下架，在列表頁直接撥動「狀態」開關即可，無需進入編輯頁。</p>
+
+  <h3>批量操作</h3>
+  <ol>
+    <li>勾選多個商品左側的核取框</li>
+    <li>在列表頂部選擇批量操作：<strong>批量上架 / 批量下架 / 批量刪除</strong></li>
+  </ol>
+
+  <h3>資源回收桶</h3>
+  <p>商品刪除後進入資源回收桶，並非永久刪除。</p>
+  <p class="nav-path">路徑：<span class="tag">商品列表</span><span class="nav-arrow">→</span> 右上角「資源回收桶」</p>
+  <p>可在此恢復誤刪商品，或執行永久清除。</p>
+
+  <h2>3.3 商品分類</h2>
+  <p class="nav-path">路徑：<span class="tag">商品</span><span class="nav-arrow">→</span><span class="tag">分類管理</span></p>
+
+  <h3>新增分類步驟</h3>
+  <ol>
+    <li>點擊「新增分類」</li>
+    <li>填寫分類名稱（英文 + 繁體中文）</li>
+    <li>選擇<strong>父分類</strong>（如要建立子分類，如「Rolex &gt; Datejust」）</li>
+    <li>上傳分類封面圖（可選）</li>
+    <li>設定排序號與 SEO 資訊</li>
+    <li>點擊「保存」</li>
+  </ol>
+
+  <h3>分類結構示例</h3>
+  <pre><code>手錶（Watches）
+├── 勞力士（Rolex）
+│   ├── Datejust
+│   ├── Submariner
+│   └── Daytona
+├── 歐米茄（Omega）
+└── 卡地亞（Cartier）</code></pre>
+
+  <h2>3.4 品牌管理</h2>
+  <p class="nav-path">路徑：<span class="tag">商品</span><span class="nav-arrow">→</span><span class="tag">品牌管理</span></p>
+  <ul>
+    <li>點擊「新增品牌」，填寫品牌名稱並上傳品牌 Logo</li>
+    <li>品牌 Logo 建議為橫版透明背景 PNG，高度約 60px</li>
+    <li>品牌建立後，在新增商品時可從下拉選單直接選取</li>
+  </ul>
+
+  <h2>3.5 商品屬性</h2>
+  <p class="nav-path">路徑：<span class="tag">商品</span><span class="nav-arrow">→</span><span class="tag">屬性管理</span></p>
+  <p>屬性用於定義商品可篩選的特性，例如「錶殼材質」、「機芯類型」，方便客戶在前台篩選商品。</p>
+
+  <h3>設定流程</h3>
+  <ol>
+    <li>先建立<strong>屬性組</strong>（如「手錶規格」），用於歸類相關屬性</li>
+    <li>在屬性組下新增<strong>屬性</strong>（如「錶殼材質」）</li>
+    <li>為屬性新增<strong>屬性值</strong>（如：不鏽鋼、18K 金、鉑金）</li>
+    <li>在商品編輯頁，選擇適用的屬性值</li>
+  </ol>
+</section>
+
+<!-- ═════════════ Chapter 04：訂單管理 ═════════════ -->
+<section class="chapter" id="ch4">
+  <div class="chapter-num">04 · Order Management</div>
+  <h1>訂單管理</h1>
+
+  <p class="nav-path">路徑：<span class="tag">訂單</span><span class="nav-arrow">→</span><span class="tag">訂單列表</span></p>
+
+  <h2>訂單狀態說明</h2>
+  <table class="striped">
+    <thead>
+      <tr><th>狀態</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>待付款</strong></td><td>客戶已下單但尚未完成付款</td></tr>
+      <tr><td><strong>待處理</strong></td><td>付款成功，等待倉庫確認處理</td></tr>
+      <tr><td><strong>處理中</strong></td><td>訂單已確認，正在準備發貨</td></tr>
+      <tr><td><strong>已發貨</strong></td><td>貨物已寄出，快遞單號已錄入</td></tr>
+      <tr><td><strong>已完成</strong></td><td>客戶確認收貨，交易結束</td></tr>
+      <tr><td><strong>已取消</strong></td><td>訂單被客戶或管理員取消</td></tr>
+      <tr><td><strong>退款中</strong></td><td>退款申請正在處理中</td></tr>
+    </tbody>
+  </table>
+
+  <h2>查看訂單詳情</h2>
+  <p>點擊訂單號或右側「查看」圖標，進入訂單詳情頁。詳情頁顯示：客戶資訊、收貨地址、商品清單、付款方式、物流資訊。</p>
+
+  <h2>處理訂單（典型流程）</h2>
+
+  <h3>步驟 1：確認訂單</h3>
+  <ul>
+    <li>核對付款是否到賬（依支付方式於對應支付後台確認）</li>
+    <li>在訂單詳情頁將狀態改為「<strong>處理中</strong>」</li>
+  </ul>
+
+  <h3>步驟 2：建立發貨記錄</h3>
+  <ul>
+    <li>點擊訂單詳情頁中的「<strong>新增物流</strong>」</li>
+    <li>填入物流公司名稱及<strong>快遞單號</strong></li>
+    <li>保存後訂單狀態自動更新為「已發貨」，系統同時發送發貨通知郵件給客戶</li>
+  </ul>
+
+  <h3>步驟 3：訂單完成</h3>
+  <ul>
+    <li>客戶確認收貨後，訂單狀態自動更新為「已完成」</li>
+    <li>如需手動標記完成，在詳情頁直接修改狀態即可</li>
+  </ul>
+
+  <h2>篩選與搜索訂單</h2>
+  <p>列表頁支持按以下條件篩選：</p>
+  <ul>
+    <li>訂單狀態</li>
+    <li>下單日期範圍</li>
+    <li>客戶名稱 / 電郵</li>
+    <li>訂單號</li>
+  </ul>
+
+  <h2>導出訂單</h2>
+  <p>點擊列表右上角「<strong>導出</strong>」按鈕，系統生成 CSV 文件，可直接用 Excel 打開進行後續整理。</p>
+
+  <h2>添加內部備注</h2>
+  <p>在訂單詳情頁「備注」區域可添加內部備注。備注<strong>僅管理員可見</strong>，客戶無法查看。</p>
+</section>
+
+<!-- ═════════════ Chapter 05：客戶管理 ═════════════ -->
+<section class="chapter" id="ch5">
+  <div class="chapter-num">05 · Customer Management</div>
+  <h1>客戶管理</h1>
+
+  <p class="nav-path">路徑：<span class="tag">客戶</span><span class="nav-arrow">→</span><span class="tag">客戶列表</span></p>
+
+  <h2>查看客戶資料</h2>
+  <p>點擊客戶名稱或右側「查看」，進入詳情頁，可查看：基本資料、收貨地址、歷史訂單記錄。</p>
+
+  <h2>新增客戶</h2>
+  <ol>
+    <li>點擊「<strong>新增客戶</strong>」</li>
+    <li>填寫姓名、電郵、電話、初始密碼</li>
+    <li>點擊保存，客戶即可使用該帳號登入店鋪前台</li>
+  </ol>
+
+  <h2>啟用 / 禁用帳戶</h2>
+  <p>在客戶列表，撥動對應的「啟用」開關。<strong>禁用</strong>後該客戶無法登入前台，但其訂單和歷史記錄完整保留。</p>
+
+  <h2>模擬客戶登入</h2>
+  <p>此功能用於排查客戶反映的前台問題，以客戶視角查看店鋪狀態。</p>
+  <ol>
+    <li>進入客戶詳情頁</li>
+    <li>點擊「<strong>以此客戶登入</strong>」</li>
+    <li>系統以該客戶身份跳轉至前台，無需輸入其密碼</li>
+  </ol>
+  <div class="callout-warn">
+    <p><strong>注意</strong>：使用完畢請<strong>及時登出</strong>，返回管理員帳戶，避免操作混淆。</p>
+  </div>
+
+  <h2>客戶分組</h2>
+  <p class="nav-path">路徑：<span class="tag">客戶</span><span class="nav-arrow">→</span><span class="tag">客戶分組</span></p>
+  <ul>
+    <li>可建立分組（如：VIP 客戶、批發商）</li>
+    <li>分組可用於設定差異化定價或行銷策略（需配合相應插件）</li>
+  </ul>
+</section>
+
+<!-- ═════════════ Chapter 06：退貨換貨 ═════════════ -->
+<section class="chapter" id="ch6">
+  <div class="chapter-num">06 · Returns &amp; Exchanges</div>
+  <h1>退貨換貨（RMA）</h1>
+
+  <p class="nav-path">路徑：<span class="tag">訂單</span><span class="nav-arrow">→</span><span class="tag">退貨換貨</span></p>
+
+  <p class="lead">當客戶在前台提交退貨或換貨申請後，記錄會自動出現在此處，等待處理。</p>
+
+  <h2>處理流程</h2>
+  <ol>
+    <li>查看 RMA 詳情：申請商品、數量、客戶填寫的原因</li>
+    <li>與客戶溝通確認退換方案（退款 / 換貨 / 維修）</li>
+    <li>在 RMA 詳情頁<strong>添加歷史備注</strong>，記錄每次溝通進展</li>
+    <li>根據實際處理情況更新 RMA 狀態：<br>
+      待處理 &nbsp;→&nbsp; 處理中 &nbsp;→&nbsp; 已完成 <em>或</em> 已拒絕</li>
+  </ol>
+
+  <h2>設定退貨原因</h2>
+  <p class="nav-path">路徑：<span class="tag">訂單</span><span class="nav-arrow">→</span><span class="tag">退貨原因</span></p>
+  <p>可自定義客戶在前台提交申請時可選擇的原因選項，例如：</p>
+  <ul>
+    <li>商品描述不符</li>
+    <li>成色有誤</li>
+    <li>不再需要</li>
+    <li>收到損壞品</li>
+  </ul>
+</section>
+
+<!-- ═════════════ Chapter 07：文章管理 ═════════════ -->
+<section class="chapter" id="ch7">
+  <div class="chapter-num">07 · Articles</div>
+  <h1>文章管理</h1>
+
+  <h2>7.1 文章與文章分類</h2>
+  <p class="nav-path">路徑：<span class="tag">文章</span><span class="nav-arrow">→</span><span class="tag">文章管理</span></p>
+  <p>用於管理「關於我們」「隱私政策」「購買須知」等靜態內容頁面（後台稱為「文章」）。</p>
+
+  <h3>新增文章</h3>
+  <ol>
+    <li>點擊右上角「<strong>添加</strong>」</li>
+    <li>填寫標題（英文 + 繁體中文）</li>
+    <li>在富文本編輯器中編輯正文內容</li>
+    <li>設定 URL 別名（如 <code>about-us</code>）</li>
+    <li>選擇分類（可選，先在 <span class="tag">文章</span> → <span class="tag">文章分類</span> 中建立）</li>
+    <li>確認狀態為「<strong>啟用</strong>」後點擊「保存」</li>
+  </ol>
+  <div class="callout">
+    <p><strong>重要</strong>：英文版和繁體中文版內容<strong>各自獨立</strong>，需在頁面頂部切換語言後分別填寫保存。修改英文版不會影響中文版，反之亦然。</p>
+  </div>
+
+  <h2>7.2 首頁 / 頁尾裝修</h2>
+  <p class="nav-path">路徑：<span class="tag">設計</span><span class="nav-arrow">→</span><span class="tag">首頁裝修</span></p>
+  <p>首頁由多個可拖拽的<strong>模塊</strong>組成，常見模塊類型如下：</p>
+
+  <table class="striped">
+    <thead>
+      <tr><th>模塊類型</th><th>用途</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Banner 輪播</td><td>首頁頂部大圖輪播，吸引眼球</td></tr>
+      <tr><td>商品列表</td><td>顯示指定分類或手動挑選的商品</td></tr>
+      <tr><td>圖片 + 文字</td><td>品牌介紹、活動說明、推廣內容</td></tr>
+      <tr><td>文字區塊</td><td>純文字說明、公告</td></tr>
+      <tr><td>自定義 HTML</td><td>插入自定義代碼或第三方嵌入</td></tr>
+    </tbody>
+  </table>
+
+  <h3>修改首頁 Banner</h3>
+  <ol>
+    <li>進入 <span class="tag">設計</span> → <span class="tag">首頁裝修</span></li>
+    <li>找到 Banner 模塊，點擊「編輯」（鉛筆圖標）</li>
+    <li>上傳新圖片（建議尺寸：<strong>1920×600px</strong>）</li>
+    <li>設定圖片的點擊鏈接（可選）</li>
+    <li>點擊「預覽」確認效果</li>
+    <li>確認無誤後點擊「<strong>保存</strong>」</li>
+  </ol>
+
+  <div class="takeaway">
+    <div class="takeaway-label">其他設計入口</div>
+    <p><strong>模板設置</strong>：<span class="tag">設計</span> → <span class="tag">模板設置</span>（查看或切換當前啟用的店鋪主題）</p>
+    <p><strong>頁尾裝修</strong>：<span class="tag">設計</span> → <span class="tag">頁尾裝修</span>（修改底部版權聲明、鏈接等）</p>
+  </div>
+
+  <h2>7.3 導航配置</h2>
+  <p class="nav-path">路徑：<span class="tag">設計</span><span class="nav-arrow">→</span><span class="tag">導航配置</span></p>
+  <ul>
+    <li>可新增、刪除、排序導航選單項目</li>
+    <li>每個選單項可設定：名稱、鏈接 URL、是否在新窗口打開</li>
+    <li>支持多層嵌套（主菜單 → 子菜單）</li>
+    <li>修改後記得點擊右上角「<strong>保存</strong>」</li>
+  </ul>
+</section>
+
+<!-- ═════════════ Chapter 08：插件管理 ═════════════ -->
+<section class="chapter" id="ch8">
+  <div class="chapter-num">08 · Plugins</div>
+  <h1>插件管理</h1>
+
+  <p class="nav-path">路徑：<span class="tag">插件</span></p>
+
+  <p class="lead">插件用於為店鋪擴展功能，包括支付方式、物流配送、行銷工具等。點擊左側「插件」後，頂部可切換分類查看。</p>
+
+  <h2>插件分類</h2>
+  <table class="striped">
+    <thead>
+      <tr><th>分類</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>全部插件</td><td>顯示所有已安裝插件</td></tr>
+      <tr><td>支付插件</td><td>PayPal、Stripe、銀行轉賬等支付方式</td></tr>
+      <tr><td>物流插件</td><td>快遞公司、本地配送等運費計算方式</td></tr>
+      <tr><td>行銷插件</td><td>優惠券、積分、推廣工具等</td></tr>
+      <tr><td>分析插件</td><td>Google Analytics 等數據分析工具</td></tr>
+      <tr><td>語言插件</td><td>多語言支持擴展</td></tr>
+    </tbody>
+  </table>
+
+  <h2>啟用 / 停用插件</h2>
+  <ul>
+    <li>找到目標插件，撥動右側開關即可啟用或停用</li>
+    <li>停用後插件設定保留，重新啟用時無需重新配置</li>
+  </ul>
+
+  <h2>配置插件</h2>
+  <ul>
+    <li>點擊插件卡片右側「<strong>設置</strong>」或「<strong>編輯</strong>」進入配置頁</li>
+    <li>不同插件配置項不同，常見項目：API 金鑰、帳戶名稱、費率設定</li>
+  </ul>
+
+  <div class="callout-warn">
+    <p><strong>注意</strong>：修改支付或物流插件前，請確保新設定已在對應平台（如 PayPal 後台）完成配置，否則客戶結帳時可能出現錯誤。</p>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 09：文件管理器 ═════════════ -->
+<section class="chapter" id="ch9">
+  <div class="chapter-num">09 · File Manager</div>
+  <h1>文件管理器</h1>
+
+  <p class="nav-path">路徑：<span class="tag">文件</span><span class="nav-arrow">→</span><span class="tag">文件管理器</span></p>
+
+  <p class="lead">相當於網站的雲端相冊，所有上傳至後台的圖片和文件均存放於此，供商品、頁面、Banner 等引用。</p>
+
+  <h2>主要功能</h2>
+  <table>
+    <thead>
+      <tr><th>功能</th><th>操作方法</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>上傳文件</td><td>點擊「上傳」，選擇本地文件（支持多選）</td></tr>
+      <tr><td>新建文件夾</td><td>點擊「新建文件夾」，輸入名稱</td></tr>
+      <tr><td>刪除文件</td><td>選中文件，點擊刪除圖標</td></tr>
+      <tr><td>重命名</td><td>選中文件，點擊重命名選項</td></tr>
+      <tr><td>移動文件</td><td>選中後拖拽至目標文件夾，或使用「移動」按鈕</td></tr>
+    </tbody>
+  </table>
+
+  <h2>建議文件夾結構</h2>
+  <p>建議按品牌和用途分類整理，方便日後查找：</p>
+  <pre><code>uploads/
+├── products/          商品圖片
+│   ├── rolex/
+│   ├── omega/
+│   └── cartier/
+├── banners/           首頁 Banner 圖片
+├── brands/            品牌 Logo
+└── pages/             靜態頁面配圖</code></pre>
+
+  <div class="callout">
+    <p><strong>圖片上傳建議</strong>：商品圖片使用正方形格式（800×800px 以上），Banner 使用橫幅格式（1920×600px）。單張文件大小建議不超過 5MB。</p>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 10：數據報表 ═════════════ -->
+<section class="chapter" id="ch10">
+  <div class="chapter-num">10 · Reports &amp; Analytics</div>
+  <h1>數據報表</h1>
+
+  <p class="nav-path">路徑：<span class="tag">報表</span></p>
+
+  <h2>銷售報表</h2>
+  <p class="nav-path">路徑：<span class="tag">報表</span><span class="nav-arrow">→</span><span class="tag">銷售報表</span></p>
+  <ul>
+    <li>可選擇時間範圍：今日 / 昨日 / 本週 / 本月 / 自定義區間</li>
+    <li>顯示數據：銷售額、訂單數、平均客單價</li>
+    <li>支持導出 CSV 文件，可在 Excel 中進一步分析</li>
+  </ul>
+
+  <h2>商品瀏覽報表</h2>
+  <p class="nav-path">路徑：<span class="tag">報表</span><span class="nav-arrow">→</span><span class="tag">商品瀏覽</span></p>
+  <ul>
+    <li>顯示哪些商品瀏覽量最高，幫助判斷客戶興趣熱點</li>
+    <li>點擊某件商品可查看其逐日瀏覽趨勢圖</li>
+    <li>可用於指導選品決策和首頁推薦排序</li>
+  </ul>
+</section>
+
+<!-- ═════════════ Chapter 11：郵件記錄 ═════════════ -->
+<section class="chapter" id="ch11">
+  <div class="chapter-num">11 · Mail Logs</div>
+  <h1>郵件記錄</h1>
+
+  <p class="nav-path">路徑：<span class="tag">系統</span><span class="nav-arrow">→</span><span class="tag">郵件記錄</span></p>
+
+  <p class="lead">系統自動發送的所有郵件（包括訂單確認、發貨通知、密碼重設等）均有完整記錄，可供查閱和追蹤。</p>
+
+  <h2>主要用途</h2>
+  <ul>
+    <li>確認某封郵件是否已成功發送至客戶</li>
+    <li>查看郵件的具體內容和發送時間</li>
+    <li>對<strong>發送失敗</strong>的郵件點擊「<strong>重新發送</strong>」進行補發</li>
+  </ul>
+
+  <div class="callout">
+    <p>如客戶反映未收到訂單確認郵件，請先到此處搜索該客戶電郵，確認發送狀態，再決定是重新發送還是聯絡開發團隊排查 SMTP 配置問題。</p>
+  </div>
+</section>
+
+<!-- ═════════════ Chapter 12：系統設定 ═════════════ -->
+<section class="chapter" id="ch12">
+  <div class="chapter-num">12 · System Settings</div>
+  <h1>系統設定</h1>
+
+  <p class="nav-path">路徑：<span class="tag">系統</span></p>
+
+  <div class="callout-warn">
+    <p><strong>注意</strong>：此部分設定影響全站運作，修改前請謹慎確認。如對某項設定不確定，請聯絡開發團隊後再操作。</p>
+  </div>
+
+  <h2>基礎設定</h2>
+  <table>
+    <thead>
+      <tr><th>欄位</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>店鋪名稱</td><td>顯示在頁面標題欄和系統發送的郵件中</td></tr>
+      <tr><td>店鋪 Logo</td><td>上傳品牌 Logo 圖片（建議 PNG 格式，透明背景）</td></tr>
+      <tr><td>聯絡電話 / 電郵</td><td>顯示在前台「聯絡我們」等位置</td></tr>
+      <tr><td>時區</td><td>建議設定為 <code>Asia/Hong_Kong</code>，確保訂單時間準確</td></tr>
+    </tbody>
+  </table>
+
+  <h2>貨幣設定</h2>
+  <p class="nav-path">路徑：<span class="tag">系統</span><span class="nav-arrow">→</span><span class="tag">貨幣管理</span></p>
+  <ul>
+    <li>默認貨幣：<strong>HKD（港元）</strong></li>
+    <li>如需支持多幣種，在此新增對應貨幣並設定匯率</li>
+  </ul>
+
+  <h2>郵件設定</h2>
+  <p class="nav-path">路徑：<span class="tag">系統</span><span class="nav-arrow">→</span><span class="tag">郵件設定</span></p>
+  <ul>
+    <li>需填入 SMTP 伺服器資訊（首次配置請聯絡開發團隊協助）</li>
+    <li>配置後可在此頁發送<strong>測試郵件</strong>，確認發送是否正常</li>
+  </ul>
+
+  <h2>圖片設定</h2>
+  <p class="nav-path">路徑：<span class="tag">系統</span><span class="nav-arrow">→</span><span class="tag">圖片設定</span></p>
+  <ul>
+    <li>控制商品圖片自動縮放的尺寸和壓縮品質</li>
+    <li>一般情況下保持默認值即可，無需修改</li>
+  </ul>
+</section>
+
+<!-- ═════════════ Chapter 13：管理員帳戶 ═════════════ -->
+<section class="chapter" id="ch13">
+  <div class="chapter-num">13 · Admin Users &amp; Roles</div>
+  <h1>管理員帳戶</h1>
+
+  <h2>新增管理員</h2>
+  <p class="nav-path">路徑：<span class="tag">系統</span><span class="nav-arrow">→</span><span class="tag">後台用戶</span></p>
+  <ol>
+    <li>點擊「<strong>新增管理員</strong>」</li>
+    <li>填寫用戶名、電郵、密碼</li>
+    <li>選擇<strong>角色</strong>（決定其可操作的功能範圍）</li>
+    <li>點擊保存</li>
+  </ol>
+
+  <h2>角色與權限</h2>
+  <p class="nav-path">路徑：<span class="tag">系統</span><span class="nav-arrow">→</span><span class="tag">角色管理</span></p>
+  <p>建議按職責設定不同角色，嚴格控制各人員的操作範圍：</p>
+
+  <table class="striped">
+    <thead>
+      <tr><th>建議角色</th><th>建議權限範圍</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>超級管理員</strong></td><td>全部功能，包括系統設定和用戶管理</td></tr>
+      <tr><td><strong>運營人員</strong></td><td>商品管理、內容管理、設計構建器</td></tr>
+      <tr><td><strong>客服人員</strong></td><td>訂單查看與處理、客戶管理、RMA 退換貨</td></tr>
+      <tr><td><strong>財務人員</strong></td><td>報表查看、訂單導出（只讀，不可修改）</td></tr>
+    </tbody>
+  </table>
+
+  <h3>配置步驟</h3>
+  <ol>
+    <li>在角色管理頁新增角色，填寫角色名稱</li>
+    <li>在權限列表中勾選該角色應具備的操作項</li>
+    <li>保存角色後，在管理員帳戶設定中為對應成員指定此角色</li>
+  </ol>
+</section>
+
+<!-- ═════════════ Chapter 14：常見操作 Q&A ═════════════ -->
+<section class="chapter" id="ch14">
+  <div class="chapter-num">14 · FAQ</div>
+  <h1>常見操作 Q&amp;A</h1>
+
+  <p class="lead">以下整理了運營過程中最常見的問題及解決方法，遇到問題時請先參考此節。</p>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：新增的商品在前台看不到？</div>
+    <div class="qa-a">請確認兩點：① 商品狀態是否設為「<strong>上架</strong>」；② 所屬分類是否也處於啟用狀態。兩者均需開啟，商品才會在前台顯示。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：修改了首頁內容，但前台沒有任何變化？</div>
+    <div class="qa-a">先嘗試清除<strong>瀏覽器緩存</strong>（快捷鍵 Ctrl+Shift+R 或 Cmd+Shift+R），如仍無效，進入後台控制台點擊「<strong>清除快取</strong>」按鈕強制刷新伺服器緩存。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：客戶說收不到訂單確認郵件？</div>
+    <div class="qa-a">前往「<strong>郵件記錄</strong>」頁面，搜索該客戶電郵地址，查看郵件發送狀態。如顯示失敗，可點擊「重新發送」補發，同時告知開發團隊排查 SMTP 設定。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：商品圖片上傳後顯示比例異常或畫面模糊？</div>
+    <div class="qa-a">建議上傳<strong>正方形</strong>圖片（800×800px 或以上），格式選用 JPG 或 WebP，單張大小避免超過 5MB。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：如何查看某個訂單的物流快遞單號？</div>
+    <div class="qa-a">進入「訂單管理」，點擊對應訂單號打開詳情頁，在「<strong>物流資訊</strong>」區塊查看已錄入的快遞公司和單號。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：如何刪除一件商品？刪除後能否恢復？</div>
+    <div class="qa-a">在商品列表點擊刪除後，商品進入<strong>資源回收桶</strong>，並非永久刪除，可隨時恢復。如需徹底刪除，進入資源回收桶後執行「永久刪除」。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：修改了英文頁面的內容，為什麼中文版還是舊的？</div>
+    <div class="qa-a">英文版和繁體中文版的內容<strong>獨立存儲</strong>，互不影響。請在頁面頂部切換至中文語言後，單獨修改並保存中文版內容。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：在哪裡修改「關於我們」頁面的文字？</div>
+    <div class="qa-a">路徑：<span class="tag">文章</span><span class="nav-arrow">→</span><span class="tag">文章管理</span>，找到「About Us / 關於我們」，點擊「編輯」進行修改。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：如何設置某商品顯示「缺貨」狀態？</div>
+    <div class="qa-a">在商品編輯頁，將「<strong>庫存數量</strong>」設為 <code>0</code>，前台即自動顯示「缺貨 / Out of Stock」。</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q：誤刪了一位客戶的帳號，能否恢復？</div>
+    <div class="qa-a">進入「客戶管理」→「資源回收桶」，找到該客戶後點擊「<strong>恢復</strong>」即可。如已永久刪除，則無法恢復，請聯絡開發團隊評估數據庫層面的還原可行性。</div>
+  </div>
+
+  <div style="margin-top: 40pt; padding-top: 20pt; border-top: 0.5pt solid var(--border); color: var(--stone); font-size: 9pt; text-align: center;">
+    如有其他操作問題，請聯絡開發團隊。<br>
+    本手冊版本 V1.0 &nbsp;·&nbsp; 2026 年 5 月
+  </div>
+</section>
+
+</body>
+</html>

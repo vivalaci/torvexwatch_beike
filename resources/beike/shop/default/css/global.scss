@@ -50,6 +50,9 @@ body[class^="page-account"] {
 body {
   background-color: var(--lux-bg-page);
   color: var(--lux-text);
+  font-family: var(--lux-font-sans);
+  line-height: 1.68;
+  letter-spacing: 0.01em;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   font-style: normal;
@@ -91,9 +94,19 @@ body {
   font-weight: 700;
 }
 
-h1,h2,h3, h4, h5, h6, b, strong {
-  font-weight: 700;
+h1, h2, h3, h4, h5, h6, b, strong {
   color: var(--lux-heading);
+}
+
+h1, h2, h3 {
+  font-family: var(--lux-font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h4, h5, h6, b, strong {
+  font-weight: 700;
 }
 
 @for $i from 1 through 6 {

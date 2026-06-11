@@ -12,8 +12,10 @@ header {
   background: var(--lux-bg-page);
 
   .top-wrap {
+    position: relative;
+    z-index: 1100;
     height: auto;
-    min-height: 36px;
+    min-height: 26px;
     background: var(--lux-bg-topbar);
     display: flex;
 
@@ -22,7 +24,7 @@ header {
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      min-height: 36px;
+      min-height: 26px;
       width: 100%;
 
       .header-top-left,
@@ -33,6 +35,7 @@ header {
 
       .header-top-left {
         justify-content: flex-start;
+        visibility: hidden; /* 隐藏货币/语言选择器，保留 flex 占位使信任文案居中 */
       }
 
       .header-top-right {
@@ -48,21 +51,23 @@ header {
       .header-top-trust-wrap {
         position: relative;
         z-index: 1080;
-        padding: 2px 6px 10px;
+        padding: 0 6px;
         max-width: 100%;
       }
 
       .header-top-trust-trigger {
         display: inline-flex;
         align-items: center;
-        gap: 0.35rem;
+        gap: 0.4rem;
         margin: 0;
         padding: 0;
         border: none;
         background: transparent;
         color: var(--lux-text);
-        font-size: 12px;
-        letter-spacing: 0.02em;
+        font-family: var(--lux-font-sans);
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
         line-height: 1.2;
         white-space: nowrap;
         cursor: default;
@@ -79,7 +84,7 @@ header {
       }
 
       .header-top-trust-icon {
-        font-size: 14px;
+        font-size: 15px;
         flex-shrink: 0;
       }
 
@@ -89,8 +94,8 @@ header {
       }
 
       .header-top-trust-chevron {
-        font-size: 10px;
-        opacity: 0.75;
+        font-size: 12px;
+        opacity: 0.8;
         flex-shrink: 0;
       }
 
@@ -207,7 +212,7 @@ header {
   .header-content {
     position: relative;
     background-color: #fff;
-    padding: 0.9rem 0;
+    padding: 2rem 2.75rem;
     transition: all .2s ease-in-out;
     // border-bottom: 1px solid #eee;
 
@@ -222,12 +227,12 @@ header {
       left: 0;
       right: 0;
       z-index: 999;
-      padding: .45rem 0;
+      padding: .6rem 2.75rem;
       border-color: transparent;
       box-shadow: 0 6px 12px 0 rgba(0, 0, 0, .06);
     }
 
-    > .container, .container-fluid {
+    > .container, .container-fluid, .lux-header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -251,11 +256,96 @@ header {
       transform: translateX(-50%);
       z-index: 1;
       img {
-        max-width: 200px;
+        max-width: 220px;
         max-height: 50px;
         @media (max-width: 1200px) {
-          max-width: 160px;
+          max-width: 180px;
+          max-height: 44px;
         }
+      }
+      /* 默认：显示深色版，隐藏白色版 */
+      .lux-logo-default { display: block; }
+      .lux-logo-white   { display: none; }
+    }
+
+    /* 桌面搜索框：胶囊形，直接输入 */
+    .lux-search-form {
+      margin-right: 0.2rem;
+    }
+
+    .lux-search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      border: 1px solid #c8c8c8;
+      border-radius: 999px;
+      padding: 7px 12px 7px 16px;
+      min-width: 200px;
+      transition: border-color 0.18s ease;
+
+      &:focus-within {
+        border-color: #888;
+      }
+    }
+
+    .lux-search-input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 0.875rem;
+      font-family: var(--lux-font-sans);
+      font-weight: 400;
+      color: #444;
+      letter-spacing: 0.01em;
+
+      &::placeholder { color: #aaa; }
+
+      /* 移除浏览器原生搜索 × 按钮 */
+      &::-webkit-search-cancel-button { -webkit-appearance: none; }
+    }
+
+    .lux-search-submit {
+      display: flex;
+      align-items: center;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      color: #777;
+      flex-shrink: 0;
+
+      .lux-search-box-icon {
+        font-size: 0.875rem;
+      }
+
+      &:hover { color: #333; }
+    }
+
+    /* over-hero 态：搜索框白色边框 */
+    .lux-header-quick-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem 1rem;
+      flex-wrap: nowrap;
+
+      .lux-header-quick-link {
+        font-size: 0.875rem;
+        font-family: var(--lux-font-sans);
+        font-weight: 400;
+        color: #111;
+        text-decoration: none;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: color 0.15s ease;
+
+        i { font-size: 0.875rem; }
+
+        &:hover { color: #000; }
       }
     }
 
@@ -334,9 +424,9 @@ header {
 
     .right-btn {
       .nav-link {
-        color: #333;
-        padding-right: 0.7rem;
-        padding-left: 0.7rem;
+        color: #111;
+        padding-right: 0.6rem;
+        padding-left: 0.6rem;
         position: relative;
         @media (max-width: 1200px) {
           padding-right: 0.3rem;
@@ -348,16 +438,28 @@ header {
         }
 
         img {
-          width: 24px;
+          width: 26px;
         }
+      }
+
+      /* Bootstrap Icons 替换 SVG：统一轮廓风格，对标 Bob's */
+      .lux-nav-icon {
+        font-size: 1.35rem;
+        color: #111;
+        display: block;
+      }
+
+      .lux-desktop-menu-icon {
+        font-size: 1.5rem;
+        color: #111;
       }
     }
   }
 
   .cart-badge-quantity {
     position: absolute;
-    left: 27px;
-    top: -3px;
+    left: 14px;
+    top: -6px;
     text-align: center;
     font-size: 12px;
     display: none;
@@ -604,6 +706,25 @@ body.page-home {
     }
 
     &.lux-header-over-hero {
+      .lux-header-quick-nav .lux-header-quick-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        &:hover { color: #fff !important; }
+      }
+
+      /* 图标白色：在顶层直接覆盖硬编码的 #111，优先级最高 */
+      .lux-nav-icon,
+      .lux-desktop-menu-icon {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .lux-search-box {
+        background: transparent !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+        &:hover, &:focus-within { border-color: rgba(255,255,255,0.85) !important; }
+      }
+      .lux-search-input { color: rgba(255,255,255,0.9) !important; &::placeholder { color: rgba(255,255,255,0.6) !important; } }
+      .lux-search-submit { color: rgba(255,255,255,0.8) !important; }
+
       .top-wrap {
         background: rgba(247, 247, 247, 0.88);
         backdrop-filter: blur(8px);
@@ -627,7 +748,7 @@ body.page-home {
         background: transparent !important;
         border-bottom: none !important;
         box-shadow: none !important;
-        padding: 0.72rem 0 !important;
+        padding: 0.9rem 2.75rem !important;
 
         .nav-item:hover > .nav-link {
           color: rgba(255, 255, 255, 0.9) !important;
@@ -653,13 +774,20 @@ body.page-home {
           filter: brightness(0) invert(1);
         }
 
+        .right-btn .nav-link .lux-nav-icon {
+          color: #fff !important;
+        }
+
         .lux-desktop-menu-btn {
           color: #fff !important;
         }
 
-        .logo img {
-          filter: none;
+        .lux-desktop-menu-icon {
+          color: #fff !important;
         }
+
+        .lux-logo-default { display: none; }
+        .lux-logo-white   { display: block; filter: none !important; }
       }
 
       .header-mobile {
@@ -673,6 +801,11 @@ body.page-home {
     }
 
     &.lux-header-fixed {
+      .lux-header-quick-nav .lux-header-quick-link {
+        color: #333 !important;
+        &:hover { color: #000 !important; }
+      }
+
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 
       .top-wrap {
@@ -706,7 +839,7 @@ body.page-home {
       .header-content {
         background: #fff !important;
         border-bottom: 1px solid #eee !important;
-        padding: 0.52rem 0 !important;
+        padding: 0.65rem 2.75rem !important;
 
         .nav-item:hover > .nav-link {
           color: $primary !important;
@@ -728,9 +861,8 @@ body.page-home {
           color: #333 !important;
         }
 
-        .logo img {
-          filter: none;
-        }
+        .lux-logo-default { display: block; }
+        .lux-logo-white   { display: none; }
       }
 
       .header-mobile {

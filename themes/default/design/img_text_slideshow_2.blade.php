@@ -40,8 +40,27 @@
                     @if ($image['description'])
                       <p class="description">{{ $image['description'] }}</p>
                     @endif
-                    @if ($image['link']['link'])
-                      <a href="{{ $image['link']['link'] ?: 'javascript:void(0)' }}" class="btn">{{ __('shop/account.check_details') }}</a>
+                    @php
+                      $btn1Link = $image['link']['link'] ?? '';
+                      $btn1Text = $image['link']['text'] ?? '';
+                      $btn2Link = $image['link_2']['link'] ?? '';
+                      $btn2Text = $image['link_2']['text'] ?? '';
+                    @endphp
+                    @if ($btn1Link || $btn2Link)
+                      <div class="slide-cta-wrap">
+                        @if ($btn1Link)
+                          <a href="{{ $btn1Link }}" class="slide-cta"{{ ($image['link']['new_window'] ?? false) ? ' target="_blank"' : '' }}>
+                            <span class="cta-label">{{ $btn1Text ?: __('shop/account.check_details') }}</span>
+                            <span class="cta-arrow"><i class="bi bi-chevron-right"></i></span>
+                          </a>
+                        @endif
+                        @if ($btn2Link)
+                          <a href="{{ $btn2Link }}" class="slide-cta"{{ ($image['link_2']['new_window'] ?? false) ? ' target="_blank"' : '' }}>
+                            <span class="cta-label">{{ $btn2Text ?: __('shop/account.check_details') }}</span>
+                            <span class="cta-arrow"><i class="bi bi-chevron-right"></i></span>
+                          </a>
+                        @endif
+                      </div>
                     @endif
                   </div>
                 </div>

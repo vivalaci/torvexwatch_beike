@@ -7,7 +7,7 @@
 @section('page-title-right')
   @hookwrapper('admin.plugin.marketing')
   <a href="{{ admin_route('marketing.index', isset($type) ? ['type' => $type]: '') }}"
-     class="btn btn-outline-info">{{ __('common.get_more') }}</a>
+     class="btn btn-outline-info d-none">{{ __('common.get_more') }}</a>
   @endhookwrapper
 @endsection
 
@@ -64,7 +64,7 @@
         <div v-else>
           <x-admin-no-data>
             <x-slot:text>
-              {{ __('common.no_data') }} <a href="{{ admin_route('marketing.index', isset($type) ? ['type' => $type]: '') }}"><i class="bi bi-link-45deg"></i> {{ __('common.get_more') }}</a>
+              {{ __('common.no_data') }} <a href="{{ admin_route('marketing.index', isset($type) ? ['type' => $type]: '') }}" class="d-none"><i class="bi bi-link-45deg"></i> {{ __('common.get_more') }}</a>
             </x-slot>
           </x-admin-no-data>
         </div>

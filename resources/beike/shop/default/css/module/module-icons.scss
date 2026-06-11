@@ -93,7 +93,7 @@
     }
 
     /* 每个卡片 <a>：flex 列，品牌名在上、产品名在下 */
-    a {
+    a:not(.lux-icons-view-all-btn) {
       display: flex;
       flex-direction: column;
       text-decoration: none;
@@ -127,6 +127,41 @@
       }
     }
   }
+}
+
+/* "View All Models" 按钮 */
+.lux-icons-view-all-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  @media (min-width: 768px) {
+    margin-top: 2.5rem;
+  }
+}
+
+.module-icons .lux-icons-view-all-btn,
+.lux-icons-view-all-btn {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.7rem 2.2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background 0.2s;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  &:hover {
+    background: #333;
+    color: #fff;
+  }
+}
+
+.module-icons .lux-icons-view-all-btn:hover {
+  color: #fff;
 }
 
 /* 非轮播 icons 的 module-item 容器：增加垂直 padding 使品牌条 + 图标合计填满视口 */

@@ -34,6 +34,11 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ image_origin(system_setting('base.favicon')) }}">
 
+    <!-- Google Fonts: Frank Ruhl Libre (serif) + Inter (sans) — matches Bob's Watches font stack -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- CSS and JS -->
     <link rel="stylesheet" type="text/css" href="{{ mix('/build/beike/shop/'.system_setting('base.theme').'/css/bootstrap.css') }}">
     <script src="{{ asset('vendor/jquery/jquery-3.6.0.min.js') }}"></script>

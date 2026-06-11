@@ -9,7 +9,7 @@
   padding-bottom: 0;
 
   .module-img-text-slideshow {
-    --lux-hero-serif: Georgia, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Times New Roman', Times, serif;
+    --lux-hero-serif: 'Frank Ruhl Libre', 'Utopia Std', Georgia, serif;
 
     .swiper-pagination {
       bottom: 28px !important;
@@ -106,16 +106,16 @@
     }
 
     .lux-hero-sub {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      font-size: 0.72rem !important;
-      letter-spacing: 0.2em;
+      font-family: var(--lux-font-sans);
+      font-size: 0.68rem !important;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 0.75rem !important;
-      opacity: 0.95;
+      opacity: 0.85;
 
       @media (min-width: 992px) {
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
         margin-bottom: 1rem !important;
       }
     }
@@ -123,9 +123,9 @@
     .lux-hero-title {
       font-family: var(--lux-hero-serif);
       font-size: clamp(2.15rem, 4.9vw, 3.6rem) !important;
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: 0.01em;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
       margin-bottom: 0.75rem !important;
       color: #fff !important;
 
@@ -158,14 +158,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 0.52rem 1.4rem !important;
-      font-size: 0.76rem !important;
-      font-weight: 600 !important;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      min-height: 48px;
+      padding: 0.65rem 2rem !important;
+      font-size: 1rem !important;
+      font-family: var(--lux-font-sans) !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.01em;
+      text-transform: none;
       border-radius: 999px !important;
-      border: 1px solid rgba(255, 255, 255, 0.95) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
       background: transparent !important;
       color: #fff !important;
       text-decoration: none !important;
@@ -173,8 +174,8 @@
 
       &:hover,
       &:focus {
-        background: #fff !important;
-        color: #111 !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        color: #fff !important;
         border-color: #fff !important;
       }
     }
@@ -182,11 +183,11 @@
     .lux-hero-btn--outline {
       background: transparent !important;
       color: #fff !important;
-      border-color: rgba(255, 255, 255, 0.85) !important;
+      border-color: rgba(255, 255, 255, 0.9) !important;
 
       &:hover,
       &:focus {
-        background: rgba(255, 255, 255, 0.12) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
         color: #fff !important;
       }
     }

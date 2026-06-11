@@ -18,6 +18,17 @@
   overflow: hidden;
   position: relative;
 
+  // Hero 高度：设在容器上，子级继承 100% 才能被 Swiper.js 正确识别
+  height: clamp(480px, 87vh, 920px);
+
+  @media (max-width: 991px) {
+    height: clamp(240px, 55vh, 520px);
+  }
+
+  .swiper-wrapper {
+    height: 100%;
+  }
+
   &.w-container-fluid, &.w-container {
     border-radius: 16px;
     overflow: hidden;
@@ -92,6 +103,8 @@
 
   .content-wrap {
     display: flex;
+    padding-left: clamp(1rem, 3.5vw, 4rem);
+    padding-right: clamp(1rem, 3.5vw, 4rem);
     &.start {
       justify-content: flex-start;
     }
@@ -101,7 +114,9 @@
       text-align: center;
 
       .text-wrap {
-        max-width: 800px;
+        @media (min-width: 992px) {
+          max-width: 800px;
+        }
       }
     }
 
@@ -146,46 +161,77 @@
     }
   }
 
+  .swiper-slide {
+    height: 100%;
+  }
+
   .image-wrap {
     transform: scale(1.1732);
     transition: transform 3s cubic-bezier(0.23, 1, 0.32, 1);
+    height: 100%;
+    overflow: hidden;
+
+    img.img-fluid {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
 
     .module-img-text-slideshow-2__video {
       width: 100%;
       height: 100%;
-      min-height: 280px;
+      min-height: 260px;
       object-fit: cover;
       display: block;
     }
   }
 
   .text-wrap {
-    max-width: 800px;
+    max-width: 90%;
     color: #fff;
-    // margin-bottom: 30px;
 
-    @media (max-width: 992px) {
-      padding: 30px 0;
+    @media (max-width: 575px) {
+      padding: 10px 0;
+    }
+
+    @media (min-width: 576px) and (max-width: 991px) {
+      padding: 18px 0;
+    }
+
+    @media (min-width: 992px) {
+      max-width: min(1100px, 65vw);
     }
 
     .sub-title {
-      font-size: .8rem;
-      margin-bottom: .4rem;
+      font-size: .65rem;
+      margin-bottom: .1rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-weight: 400;
+
+      @media (min-width: 576px) {
+        font-size: .72rem;
+        letter-spacing: .18em;
+      }
 
       @media (min-width: 992px) {
-        font-size: 2rem;
-        margin-bottom: .8rem;
+        font-size: .9rem;
+        margin-bottom: .15rem;
+        letter-spacing: .22em;
       }
     }
 
     .title {
-      font-size: .9rem;
+      font-size: clamp(1.6rem, 5.5vw, 2.5rem);
+      font-weight: 300;
       margin-bottom: 0;
       color: #fff;
+      line-height: 1.05;
 
       @media (min-width: 992px) {
-        font-size: 3rem;
-        margin-bottom: 1.2rem;
+        font-size: clamp(2rem, 4.2vw, 4.8rem);
+        margin-bottom: 1.4rem;
       }
     }
 
@@ -199,19 +245,67 @@
       }
     }
 
-    a.btn {
-      font-size: .7rem;
-      background-color: #fff;
-      padding: .3rem .8rem;
-      &:hover {
-        background-color: #222;
-      }
+    .slide-cta-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      align-items: center;
+      margin-top: .8rem;
 
       @media (min-width: 992px) {
-        padding: 1rem 2rem;
-        margin-top: 1.5rem;
-        font-weight: bold;
-        font-size: .8rem;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+    }
+
+    .slide-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, .85);
+      background-color: transparent;
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 500;
+      padding: .55rem 1.6rem;
+      text-decoration: none;
+      transition: background-color .25s ease, color .25s ease, border-color .25s ease, padding .25s ease;
+      line-height: 1.4;
+      cursor: pointer;
+      overflow: hidden;
+
+      @media (min-width: 992px) {
+        font-size: 1rem;
+        padding: .85rem 2.4rem;
+      }
+
+      .cta-arrow {
+        display: inline-flex;
+        align-items: center;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-width .25s ease, opacity .2s ease, margin-left .25s ease;
+        margin-left: 0;
+        font-size: .85em;
+      }
+
+      &:hover {
+        background-color: #fff;
+        color: #111;
+        border-color: #fff;
+        padding-right: 1.1rem;
+
+        @media (min-width: 992px) {
+          padding-right: 1.5rem;
+        }
+
+        .cta-arrow {
+          max-width: 1.2em;
+          opacity: 1;
+          margin-left: .35rem;
+        }
       }
     }
   }

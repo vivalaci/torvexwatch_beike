@@ -92,25 +92,51 @@
   </div>
 
   <div class="header-content d-none d-lg-block">
-    <div class="container-fluid navbar-expand-lg">
+    <div class="container-fluid lux-header-inner navbar-expand-lg">
       <div class="header-left">
         <nav class="menu-wrap d-none" aria-hidden="true" aria-label="{{ __('shop/header.main_navigation') }}">
           @include('shared.menu-pc')
         </nav>
+        <div class="lux-header-quick-nav">
+          <a href="#locations" class="lux-header-quick-link lux-header-quick-link--icon" aria-label="Locations">
+            <i class="bi bi-geo-alt" aria-hidden="true"></i>
+          </a>
+          <a href="{{ system_setting('base.telephone') ? 'tel:'.system_setting('base.telephone') : '#contact' }}" class="lux-header-quick-link">
+            <i class="bi bi-telephone" aria-hidden="true"></i>Contact Us
+          </a>
+          <a href="{{ shop_route('page_categories.home') }}" class="lux-header-quick-link">Luxury Watches</a>
+          <a href="#sell" class="lux-header-quick-link">Sell Your Watch</a>
+        </div>
       </div>
       @hookwrapper('header.menu.logo')
       <div class="logo"><a href="{{ shop_route('home.index') }}">
-          <img src="{{ image_origin(system_setting('base.logo')) }}" class="img-fluid" alt="{{ system_setting('base.meta_title', 'BeikeShop开源好用的跨境电商系统') }}"></a>
+          <img src="{{ image_origin(system_setting('base.logo')) }}" class="img-fluid lux-logo-default" alt="{{ system_setting('base.meta_title', 'BeikeShop开源好用的跨境电商系统') }}">
+          <img src="{{ asset('image/logo-white.png') }}" class="img-fluid lux-logo-white" alt="{{ system_setting('base.meta_title', 'BeikeShop开源好用的跨境电商系统') }}"></a>
       </div>
       @endhookwrapper
       <div class="header-right">
         <div class="right-btn">
         <ul class="navbar-nav flex-row align-items-center">
           @hookwrapper('header.menu.icon')
-          <li class="nav-item"><a href="#offcanvas-search-top" data-bs-toggle="offcanvas" class="nav-link"><img src="{{ asset('image/icons/search.svg') }}" class="img-fluid"></a></li>
-          <li class="nav-item"><a href="{{ shop_route('account.wishlist.index') }}" class="nav-link"><img src="{{ asset('image/icons/favorite.svg') }}" class="img-fluid"></a></li>
+          {{-- 桌面搜索框（仅 lg+）：直接输入，回车跳转搜索结果 --}}
+          <li class="nav-item d-none d-lg-flex align-items-center">
+            <form action="{{ shop_route('products.search') }}" method="GET" class="lux-search-form" role="search">
+              <div class="lux-search-box">
+                <input type="search" name="keyword" class="lux-search-input"
+                       placeholder="Search"
+                       autocomplete="off"
+                       value="{{ request('keyword') }}">
+                <button type="submit" class="lux-search-submit" aria-label="{{ __('common.search') }}">
+                  <i class="bi bi-search lux-search-box-icon" aria-hidden="true"></i>
+                </button>
+              </div>
+            </form>
+          </li>
+          {{-- 移动端搜索图标（lg 以下） --}}
+          <li class="nav-item d-lg-none"><a href="#offcanvas-search-top" data-bs-toggle="offcanvas" class="nav-link"><img src="{{ asset('image/icons/search.svg') }}" class="img-fluid"></a></li>
+          <li class="nav-item d-none"><a href="{{ shop_route('account.wishlist.index') }}" class="nav-link"><img src="{{ asset('image/icons/favorite.svg') }}" class="img-fluid"></a></li>
           <li class="nav-item dropdown">
-            <a href="{{ shop_route('account.index') }}" class="nav-link"><img src="{{ asset('image/icons/account.svg') }}" class="img-fluid"></a>
+            <a href="{{ shop_route('account.index') }}" class="nav-link"><i class="bi bi-person lux-nav-icon" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
               @auth('web_shop')
                 <li class="dropdown-item">
@@ -142,7 +168,7 @@
             <a
               class="nav-link position-relative btn-right-cart {{ equal_route('shop.carts.index') ? 'page-cart' : '' }}"
               href="javascript:void(0);" role="button">
-              <img src="{{ asset('image/icons/cart.svg') }}" class="img-fluid">
+              <i class="bi bi-bag lux-nav-icon" aria-hidden="true"></i>
               <span class="cart-badge-quantity"></span>
             </a>
           </li>
@@ -190,7 +216,7 @@
       <span class="visually-hidden" id="offcanvasMobileMenuLabel">{{ __('common.menu') }}</span>
       <button type="button" class="btn-close lux-drawer-close-btn" data-bs-dismiss="offcanvas" aria-label="{{ __('shop/header.drawer_close') }}"></button>
     </div>
-    <div class="offcanvas-body lux-offcanvas-menu-body d-flex flex-column p-0 overflow-hidden">
+    <div class="offcanvas-body lux-offcanvas-menu-body p-0">
       @include('shared.menu-drawer')
     </div>
   </div>

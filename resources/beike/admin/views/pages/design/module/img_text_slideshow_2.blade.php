@@ -31,6 +31,8 @@
               <div class="tag">{{ __('admin/builder.text_suggested_size') }} 1900 x 700</div>
             </div>
             <link-selector v-model="item.link" style="margin-bottom: 10px"></link-selector>
+            <div class="module-edit-title">{{ __('admin/builder.text_btn_text') }}</div>
+            <text-i18n v-model="item.link.text" style="margin-bottom: 10px"></text-i18n>
 
             <div class="module-edit-title">{{ __('admin/builder.sub_title') }}</div>
             <text-i18n v-model="item.sub_title" style="margin-bottom: 10px"></text-i18n>
@@ -47,6 +49,11 @@
               <el-radio-button label="center">{{ __('admin/builder.text_center') }}</el-radio-button>
               <el-radio-button label="end">{{ __('admin/builder.text_end') }}</el-radio-button>
             </el-radio-group>
+
+            <div class="module-edit-title" style="margin-top:14px; padding-top:10px; border-top:1px dashed #e0e0e0;">{{ __('admin/builder.second_link_optional') }}</div>
+            <link-selector v-model="item.link_2" style="margin-bottom: 10px"></link-selector>
+            <div class="module-edit-title">{{ __('admin/builder.text_btn_text') }}</div>
+            <text-i18n v-model="item.link_2.text" style="margin-bottom: 10px"></text-i18n>
           </div>
         </div>
       </draggable>
@@ -85,6 +92,19 @@ Vue.component('module-editor-img-text-slideshow-2', {
     }
   },
 
+  created() {
+    this.module.images.forEach(item => {
+      if (item.link && !item.link.hasOwnProperty('text')) {
+        this.$set(item.link, 'text', languagesFill(''));
+      }
+      if (!item.link_2) {
+        this.$set(item, 'link_2', {type: 'product', value: '', text: languagesFill('')});
+      } else if (!item.link_2.hasOwnProperty('text')) {
+        this.$set(item.link_2, 'text', languagesFill(''));
+      }
+    });
+  },
+
   watch: {
     module: {
       handler: function (val) {
@@ -116,7 +136,8 @@ Vue.component('module-editor-img-text-slideshow-2', {
         title: languagesFill(''),
         description: languagesFill(''),
         text_position: 'start',
-        link: {type: 'product', value:''}
+        link: {type: 'product', value: '', text: languagesFill('')},
+        link_2: {type: 'product', value: '', text: languagesFill('')}
       });
     }
   }
@@ -153,10 +174,8 @@ Vue.component('module-editor-img-text-slideshow-2', {
           description: languagesFill(''),
           text_position: 'start',
           show: true,
-          link: {
-            type: 'product',
-            value:''
-          }
+          link: {type: 'product', value: '', text: languagesFill('')},
+          link_2: {type: 'product', value: '', text: languagesFill('')}
         },
         {
           image: {
@@ -168,10 +187,8 @@ Vue.component('module-editor-img-text-slideshow-2', {
           title: languagesFill(''),
           text_position: 'start',
           description: languagesFill(''),
-          link: {
-            type: 'product',
-            value:''
-          }
+          link: {type: 'product', value: '', text: languagesFill('')},
+          link_2: {type: 'product', value: '', text: languagesFill('')}
         }
       ]
     }

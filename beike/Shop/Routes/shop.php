@@ -26,6 +26,7 @@ use Beike\Shop\Http\Controllers\PluginController;
 use Beike\Shop\Http\Controllers\ProductController;
 use Beike\Shop\Http\Controllers\ZoneController;
 use Beike\Shop\Http\Controllers\GeoIpController;
+use Beike\Shop\Http\Controllers\SellInquiryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')
@@ -73,6 +74,7 @@ Route::prefix('/')
 
         Route::get('plugin/{code}/{path}', [PluginController::class, 'asset'])->where('path', '(.*)')->name('plugin.asset');
         Route::get('user_country', [GeoIpController::class, 'getUserCountry'])->name('user-country');
+        Route::post('sell-inquiry', [SellInquiryController::class, 'store'])->name('sell.inquiry.store');
 
         Route::middleware('checkout_auth:' . Customer::AUTH_GUARD)
             ->group(function () {
